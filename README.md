@@ -6,5 +6,6 @@ FH Joanneum, Information Management: SWENGA
 
 Team
  - HARING Martin
+ - SCHOPPER Fabian
 
 Current Sprint Backlog: N/A
