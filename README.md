@@ -8,7 +8,10 @@ Team
  - FORTMUELLER Vanessa
  - HARING Martin
  - KOGELNIK Stefan
+<<<<<<< HEAD
  - SCHOPPER Fabian
+=======
+>>>>>>> Update README SK
 
 Current Sprint Backlog:
  - new text for Impressum
