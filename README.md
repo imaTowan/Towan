@@ -6,5 +6,6 @@ FH Joanneum, Information Management: SWENGA
 
 Team
  - HARING Martin
+ - KOGELNIK Stefan
 
 Current Sprint Backlog: N/A
