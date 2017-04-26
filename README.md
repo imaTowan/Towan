@@ -5,6 +5,7 @@ A tower defense browser game, also a students project.
 FH Joanneum, Information Management: SWENGA
 
 Team
+ - FELLNER Elisabeth
  - HARING Martin
  - KOGELNIK Stefan
  - SCHOPPER Fabian
