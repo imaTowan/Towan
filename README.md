@@ -6,6 +6,7 @@ FH Joanneum, Information Management: SWENGA
 
 Team
  - FELLNER Elisabeth
+ - FORTMUELLER Vanessa
  - HARING Martin
  - KOGELNIK Stefan
  - SCHOPPER Fabian
