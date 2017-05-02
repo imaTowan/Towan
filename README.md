@@ -11,4 +11,11 @@ Team
  - KOGELNIK Stefan
  - SCHOPPER Fabian
 
-Current Sprint Backlog: N/A
+Current Sprint Backlog:
+ - Impressum
+ - Verify Page
+ - Welcome Page (Design)
+ - License
+ - Class Models
+ - Css
+ - Register Page (Design)
