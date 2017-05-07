@@ -16,6 +16,6 @@ Current Sprint Backlog:
  - Verify Page
  - Welcome Page (Design)
  - License
- - Class Models
- - Css
+ - CSS
  - Register Page (Design)
+ - db.properties
