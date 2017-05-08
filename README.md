@@ -1,8 +1,7 @@
-TOWAN
+#TOWAN
 
-A tower defense browser game, also a students project.
-
-FH Joanneum, Information Management: SWENGA
+##A tower defense browser game, also a student's project.
+###FH Joanneum, Information Management: SWENGA
 
 Team
  - FELLNER Elisabeth
@@ -12,10 +11,11 @@ Team
  - SCHOPPER Fabian
 
 Current Sprint Backlog:
- - Impressum
- - Verify Page
+ - new text for Impressum
+ - better text for Verify Page
  - Welcome Page (Design)
  - License
  - CSS
  - Register Page (Design)
- - db.properties
+ - Login Page (Design)
+ - Login Page (Functionality)
