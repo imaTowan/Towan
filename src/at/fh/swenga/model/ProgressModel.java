@@ -2,9 +2,9 @@ package at.fh.swenga.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,43 +12,35 @@ import javax.persistence.Table;
 public class ProgressModel {
 
 	//Attributes
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="user_id")
+	private long user_progress_id;
+	
 	@Column(nullable = false)
 	private int currentLevel;
-	
-	
-	//Relationships
-	@Id
-	@OneToOne
-	@JoinColumn(name="user_id")
-	private UserModel user;
 	
 	
 	//Constructor
 	public ProgressModel() {
 	}
 
-	public ProgressModel(int currentLevel, UserModel user) {
-		super();
-		this.currentLevel = currentLevel;
-		this.user = user;
-	}
-
 	
 	//Getter & Setter
+	public long getUser_progress_id() {
+		return user_progress_id;
+	}
+
+	public void setUser_progress_id(long user_progress_id) {
+		this.user_progress_id = user_progress_id;
+	}
+	
 	public int getCurrentLevel() {
 		return currentLevel;
 	}
-
+	
 	public void setCurrentLevel(int currentLevel) {
 		this.currentLevel = currentLevel;
-	}
-
-	public UserModel getUser() {
-		return user;
-	}
-
-	public void setUser(UserModel user) {
-		this.user = user;
 	}
 
 	
@@ -57,9 +49,10 @@ public class ProgressModel {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		result = prime * result + (int) (user_progress_id ^ (user_progress_id >>> 32));
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -70,10 +63,7 @@ public class ProgressModel {
 		if (getClass() != obj.getClass())
 			return false;
 		ProgressModel other = (ProgressModel) obj;
-		if (user == null) {
-			if (other.user != null)
-				return false;
-		} else if (!user.equals(other.user))
+		if (user_progress_id != other.user_progress_id)
 			return false;
 		return true;
 	}

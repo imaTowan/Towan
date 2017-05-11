@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class TowanController {
 
-	@RequestMapping(value = "/index")
+	@RequestMapping(value = {"/", "index"})
 	public String showWelcome() {
 		return "index";
 	}
@@ -23,12 +23,17 @@ public class TowanController {
 		return "verifyInfo";
 	}
 	
+	@RequestMapping(value = "/activate")
+	public String showActivate() {
+		return "activate";
+	}
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String handleLogin() {
 		return "login";
 	}
 	
-	@RequestMapping(value = {"/","home"})
+	@RequestMapping(value = "/home")
 	public String showHome() {
 		return "home";
 	}

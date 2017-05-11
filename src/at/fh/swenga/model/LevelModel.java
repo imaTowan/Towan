@@ -2,13 +2,16 @@ package at.fh.swenga.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 @Entity
@@ -17,8 +20,8 @@ public class LevelModel {
 
 	//Attributes
 	@Id
-	@Column(name = "level_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "level_id")
 	private int level_id;
 	
 	@Column(nullable = false)
@@ -32,16 +35,19 @@ public class LevelModel {
 	@OneToMany
 	private List<LevelStatisticModel> level_statistics;
 	
-	@OneToOne
+	@OneToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH})
+	@JoinColumn(name="level_score_id", insertable=false, updatable=false)
 	private ScoreModel score;
 
 	
 	//Constructors
 	public LevelModel() {
+		score = new ScoreModel();
 	}
 
 	public LevelModel(int enemy_count, int wave_count) {
 		super();
+		score = new ScoreModel();
 		this.enemy_count = enemy_count;
 		this.wave_count = wave_count;
 	}
@@ -110,5 +116,12 @@ public class LevelModel {
 		if (level_id != other.level_id)
 			return false;
 		return true;
+	}
+	
+	
+	//Methods
+	@PrePersist
+	public void initializeScore() {
+		this.score.setLevel_score_id(level_id);
 	}
 }

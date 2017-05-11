@@ -1,14 +1,18 @@
 package at.fh.swenga.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 @Entity
@@ -17,8 +21,8 @@ public class EntryModel {
 
 	//Attributes
 	@Id
-	@Column(name="entry_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="entry_id")
 	private int entry_id;
 	
 	@Column(nullable = false, length = 250)
@@ -41,16 +45,19 @@ public class EntryModel {
 	@ManyToOne
 	private UserModel user;
 	
-	@OneToMany
+	@OneToMany(cascade={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH})
+	@JoinColumn(name="entry_report_id", insertable=false, updatable=false)
 	private List<ReportModel> reports;
 
 	
 	//Constructors
 	public EntryModel() {
+		reports = new ArrayList<ReportModel>();
 	}
 
 	public EntryModel(String text, int report_count, boolean isPinned, boolean isFlagged) {
 		super();
+		reports = new ArrayList<ReportModel>();
 		this.text = text;
 		this.report_count = report_count;
 		this.isPinned = isPinned;
@@ -145,5 +152,13 @@ public class EntryModel {
 		if (entry_id != other.entry_id)
 			return false;
 		return true;
+	}
+	
+	//Methods
+	@PrePersist
+	public void initializeReport() {
+		for (ReportModel report : reports){
+			report.setEntry_report_id(entry_id);
+		}
 	}
 }

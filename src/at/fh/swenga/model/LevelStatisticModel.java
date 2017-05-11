@@ -2,8 +2,9 @@ package at.fh.swenga.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -12,6 +13,11 @@ import javax.persistence.Table;
 public class LevelStatisticModel {
 
 	//Attributes
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "user_id")
+	private long user_level_statistic_id;
+	
 	@Column(nullable = false)
 	private int enemies_slain;
 	
@@ -23,11 +29,6 @@ public class LevelStatisticModel {
 	
 	
 	//Relationships
-	@Id
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private UserModel user;
-
 	@ManyToOne
 	private LevelModel level;
 
@@ -40,20 +41,18 @@ public class LevelStatisticModel {
 		this.enemies_slain = enemies_slain;
 		this.waves_completed = waves_completed;
 		this.towers_built = towers_built;
-		this.user = user;
-	}
-
-	public LevelStatisticModel(int enemies_slain, int waves_completed, int towers_built, UserModel user, LevelModel level) {
-		super();
-		this.enemies_slain = enemies_slain;
-		this.waves_completed = waves_completed;
-		this.towers_built = towers_built;
-		this.user = user;
-		this.level = level;
 	}
 
 	
 	//Getter & Setter
+	public long getUser_level_statistic_id() {
+		return user_level_statistic_id;
+	}
+
+	public void setUser_level_statistic_id(long user_level_statistic_id) {
+		this.user_level_statistic_id = user_level_statistic_id;
+	}
+
 	public int getEnemies_slain() {
 		return enemies_slain;
 	}
@@ -78,14 +77,6 @@ public class LevelStatisticModel {
 		this.towers_built = towers_built;
 	}
 
-	public UserModel getUser() {
-		return user;
-	}
-
-	public void setUser(UserModel user) {
-		this.user = user;
-	}
-
 	public LevelModel getLevel() {
 		return level;
 	}
@@ -93,14 +84,14 @@ public class LevelStatisticModel {
 	public void setLevel(LevelModel level) {
 		this.level = level;
 	}
-	
+
 	
 	//equals & hashcode
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		result = prime * result + (int) (user_level_statistic_id ^ (user_level_statistic_id >>> 32));
 		return result;
 	}
 
@@ -113,11 +104,8 @@ public class LevelStatisticModel {
 		if (getClass() != obj.getClass())
 			return false;
 		LevelStatisticModel other = (LevelStatisticModel) obj;
-		if (user == null) {
-			if (other.user != null)
-				return false;
-		} else if (!user.equals(other.user))
+		if (user_level_statistic_id != other.user_level_statistic_id)
 			return false;
 		return true;
-	}
+	}	
 }

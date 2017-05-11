@@ -1,21 +1,23 @@
 package at.fh.swenga.model;
 
-import java.sql.Time;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
 
 @Entity
 @Table(name = "STATISTIC")
 public class StatisticModel {
 
 	//Attributes
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "user_id")
+	private long user_statistic_id;
+	
 	@Column(nullable = false)
 	private int total_enemies_slain;
 	
@@ -25,32 +27,32 @@ public class StatisticModel {
 	@Column(nullable = false)
 	private int total_towers_built;
 	
-	@Temporal(TemporalType.TIME)
-	private Time playtime;
-	
-	
-	//Relationships
-	@Id
-	@OneToOne
-	@JoinColumn(name = "user_id")
-	private UserModel user;
-	
+	@Column(nullable = false)
+	private int playtime;
+		
 	
 	//Constructors
 	public StatisticModel() {
 	}
 
-	public StatisticModel(int total_enemies_slain, int total_waves_completed, int total_towers_built, Time playtime, UserModel user) {
+	public StatisticModel(int total_enemies_slain, int total_waves_completed, int total_towers_built, int playtime, UserModel user) {
 		super();
 		this.total_enemies_slain = total_enemies_slain;
 		this.total_waves_completed = total_waves_completed;
 		this.total_towers_built = total_towers_built;
 		this.playtime = playtime;
-		this.user = user;
 	}
 
 	
 	//Getter & Setter
+	public long getUser_statistic_id() {
+		return user_statistic_id;
+	}
+
+	public void setUser_statistic_id(long user_statistic_id) {
+		this.user_statistic_id = user_statistic_id;
+	}
+	
 	public int getTotal_enemies_slain() {
 		return total_enemies_slain;
 	}
@@ -75,20 +77,12 @@ public class StatisticModel {
 		this.total_towers_built = total_towers_built;
 	}
 
-	public Time getPlaytime() {
+	public int getPlaytime() {
 		return playtime;
 	}
 
-	public void setPlaytime(Time playtime) {
+	public void setPlaytime(int playtime) {
 		this.playtime = playtime;
-	}
-
-	public UserModel getUser() {
-		return user;
-	}
-
-	public void setUser(UserModel user) {
-		this.user = user;
 	}
 
 	
@@ -97,7 +91,7 @@ public class StatisticModel {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		result = prime * result + (int) (user_statistic_id ^ (user_statistic_id >>> 32));
 		return result;
 	}
 
@@ -110,11 +104,8 @@ public class StatisticModel {
 		if (getClass() != obj.getClass())
 			return false;
 		StatisticModel other = (StatisticModel) obj;
-		if (user == null) {
-			if (other.user != null)
-				return false;
-		} else if (!user.equals(other.user))
+		if (user_statistic_id != other.user_statistic_id)
 			return false;
 		return true;
-	}	
+	}
 }

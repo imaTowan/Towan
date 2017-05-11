@@ -2,8 +2,9 @@ package at.fh.swenga.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -12,16 +13,16 @@ import javax.persistence.Table;
 public class ReportModel {
 
 	//Attributes
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "entry_id")
+	private int entry_report_id;
+	
 	@Column(nullable = true)
 	private String text;
 	
 	
 	//Relationships
-	@Id
-	@ManyToOne
-	@JoinColumn(name = "entry_id")
-	private EntryModel entry;
-	
 	@ManyToOne
 	private UserModel user;
 
@@ -33,26 +34,25 @@ public class ReportModel {
 	public ReportModel(String text, EntryModel entry, UserModel user) {
 		super();
 		this.text = text;
-		this.entry = entry;
 		this.user = user;
 	}
 
 	
 	//Getter & Setter
+	public int getEntry_report_id() {
+		return entry_report_id;
+	}
+
+	public void setEntry_report_id(int entry_report_id) {
+		this.entry_report_id = entry_report_id;
+	}
+
 	public String getText() {
 		return text;
 	}
 
 	public void setText(String text) {
 		this.text = text;
-	}
-
-	public EntryModel getEntry() {
-		return entry;
-	}
-
-	public void setEntry(EntryModel entry) {
-		this.entry = entry;
 	}
 
 	public UserModel getUser() {
@@ -69,8 +69,7 @@ public class ReportModel {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((entry == null) ? 0 : entry.hashCode());
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		result = prime * result + entry_report_id;
 		return result;
 	}
 
@@ -83,15 +82,7 @@ public class ReportModel {
 		if (getClass() != obj.getClass())
 			return false;
 		ReportModel other = (ReportModel) obj;
-		if (entry == null) {
-			if (other.entry != null)
-				return false;
-		} else if (!entry.equals(other.entry))
-			return false;
-		if (user == null) {
-			if (other.user != null)
-				return false;
-		} else if (!user.equals(other.user))
+		if (entry_report_id != other.entry_report_id)
 			return false;
 		return true;
 	}

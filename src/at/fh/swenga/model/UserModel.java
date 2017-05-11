@@ -1,14 +1,18 @@
 package at.fh.swenga.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 @Entity
@@ -17,8 +21,8 @@ public class UserModel {
 
 	// Attributes
 	@Id
-	@Column(name = "user_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "user_id")
 	private long user_id;
 	
 	@Column(nullable = false, length = 15)
@@ -42,15 +46,20 @@ public class UserModel {
 	@Column(nullable = false)
 	private boolean isHidden;
 	
+	@Column(nullable = false)
+	private boolean isActivated;
 	
 	//Relationships
-	@OneToOne
+	@OneToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH})
+	@JoinColumn(name="user_progress_id", insertable=false, updatable=false)
 	private ProgressModel progress;
 	
-	@OneToOne
+	@OneToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH})
+	@JoinColumn(name="user_statistic_id", insertable=false, updatable=false)
 	private StatisticModel statistic;
 	
-	@OneToMany
+	@OneToMany(cascade={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH})
+	@JoinColumn(name="user_level_statistic_id", insertable=false, updatable=false)
 	private List<LevelStatisticModel> level_statistics;
 	
 	@OneToMany
@@ -65,20 +74,30 @@ public class UserModel {
 	
 	//Constructor
 	public UserModel() {
+		progress = new ProgressModel();
+		statistic = new StatisticModel();
+		level_statistics = new ArrayList<LevelStatisticModel>();
 	}
 
-	public UserModel(String username, String password, String email_address, boolean isBlocked, boolean isHidden) {
+	public UserModel(String username, String password, String email_address, boolean isBlocked, boolean isHidden, boolean isActivated) {
 		super();
+		progress = new ProgressModel();
+		statistic = new StatisticModel();
+		level_statistics = new ArrayList<LevelStatisticModel>();
 		this.username = username;
 		this.password = password;
 		this.email_address = email_address;
 		this.isBlocked = isBlocked;
 		this.isHidden = isHidden;
+		this.isActivated = isActivated;
 	}
 
 	public UserModel(String username, String password, String email_address, String signature, String profile_picture,
-			boolean isBlocked, boolean isHidden) {
+			boolean isBlocked, boolean isHidden, boolean isActivated) {
 		super();
+		progress = new ProgressModel();
+		statistic = new StatisticModel();
+		level_statistics = new ArrayList<LevelStatisticModel>();
 		this.username = username;
 		this.password = password;
 		this.email_address = email_address;
@@ -86,6 +105,7 @@ public class UserModel {
 		this.profile_picture = profile_picture;
 		this.isBlocked = isBlocked;
 		this.isHidden = isHidden;
+		this.isActivated = isActivated;
 	}
 
 	
@@ -154,6 +174,14 @@ public class UserModel {
 		this.isHidden = isHidden;
 	}
 	
+	public boolean isActivated() {
+		return isActivated;
+	}
+
+	public void setActivated(boolean isActivated) {
+		this.isActivated = isActivated;
+	}
+
 	public ProgressModel getProgress() {
 		return progress;
 	}
@@ -244,4 +272,14 @@ public class UserModel {
 		return true;
 	}
 	
+	
+	//Methods
+	@PrePersist
+	public void initializeIdentifyingRelationships() {
+		this.progress.setUser_progress_id(user_id);
+		this.statistic.setUser_statistic_id(user_id);
+		for (LevelStatisticModel level_statistic : level_statistics){
+			level_statistic.setUser_level_statistic_id(user_id);
+		}
+	}
 }
