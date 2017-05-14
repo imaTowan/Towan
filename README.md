@@ -9,9 +9,12 @@ Team
  - HARING Martin
  - KOGELNIK Stefan
 <<<<<<< HEAD
+<<<<<<< HEAD
  - SCHOPPER Fabian
 =======
 >>>>>>> Update README SK
+=======
+>>>>>>> 09bc0458d655dcb5519dc82a75c52389b87d66b1
 
 Current Sprint Backlog:
  - new text for Impressum
