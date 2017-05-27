@@ -53,6 +53,11 @@ public class TowanController {
 		return "impressum";
 	}
 	
+	@RequestMapping(value = "/forgottenpwd")
+	public String showForgottenPwd() {
+		return "forgottenpwd";
+	}
+	
 	@ExceptionHandler(Exception.class)
 	public String handleAllException(Exception ex) {
 		return "error";
