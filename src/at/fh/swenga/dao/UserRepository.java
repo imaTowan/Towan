@@ -9,5 +9,5 @@ import at.fh.swenga.model.UserModel;
 @Repository
 @Transactional
 public interface UserRepository extends JpaRepository<UserModel, Integer>{
-
+	
 }
