@@ -13,24 +13,14 @@ public class TowanController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/register")
-	public String showRegister() {
-		return "register";
-	}
-	
-	@RequestMapping(value = "/verify")
-	public String showVerification() {
-		return "verifyInfo";
-	}
-	
-	@RequestMapping(value = "/activate")
-	public String showActivate() {
-		return "activate";
-	}
-	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String handleLogin() {
+	public String showLogin() {
 		return "login";
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String doLogin() {
+		return "home";
 	}
 	
 	@RequestMapping(value = "/home")
