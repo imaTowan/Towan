@@ -2,10 +2,31 @@
 <html>
 <head>
 <title>Towan</title>
-<div th:replace="~{includes/bootstrapMeta.html :: bootstrapMeta}" />
-<div th:replace="~{includes/bootstrapCSS.html :: bootstrapCSS}" />
-<link rel="stylesheet" type="text/css" href="includes/style.css">
+<div th:replace="~{includes/bootstrapMeta :: bootstrapMeta}" />
+<div th:replace="~{includes/bootstrapCSS :: bootstrapCSS}" />
 
+<style>
+.buttonStyle {
+	background-color: #000000;
+	color: #ffffff;
+	font-family: "Calibri";
+	font-size: 20px;
+	height: 40px;
+	width: 200px;
+	margin-top: 5mm;
+}
+
+.buttonStyle:hover {
+	background-color: #ffffff;
+	color: #000000;
+	border: 5px solid black;
+}
+
+.well
+{
+	padding: 10px 0px 10px 0px;	
+}
+</style>
 </head>
 
 <body>
