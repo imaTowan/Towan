@@ -12,10 +12,6 @@ Team
 
 Current To Do List:
  - new text for Impressum
- - better text for Verify Page
- - Welcome Page (Design)
- - CSS
- - Register Page (Design)
  - Login Page (Design)
  - Login Page (Functionality)
  - better security implementation for spring-security.xml

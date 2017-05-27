@@ -1,0 +1,15 @@
+.buttonStyle {
+	background-color: #000000;
+	color: #ffffff;
+	font-family: "Calibri";
+	font-size: 20px;
+	height: 40px;
+	width: 200px;
+	margin-top: 5mm;
+}
+
+.buttonStyle:hover {
+	background-color: #ffffff;
+	color: #000000;
+	border: 5px solid black;
+}
