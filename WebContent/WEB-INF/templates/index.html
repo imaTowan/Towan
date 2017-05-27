@@ -2,8 +2,8 @@
 <html>
 <head>
 <title>Towan</title>
-<div th:replace="~{includes/bootstrapMeta :: bootstrapMeta}" />
-<div th:replace="~{includes/bootstrapCSS :: bootstrapCSS}" />
+<div th:replace="~{includes/bootstrapMeta.html :: bootstrapMeta}" />
+<div th:replace="~{includes/bootstrapCSS.html :: bootstrapCSS}" />
 </head>
 
 <style>
@@ -28,6 +28,13 @@
 	padding: 10px 0px 10px 0px;	
 }
 </style>
+=======
+<div th:replace="~{includes/bootstrapMeta.html :: bootstrapMeta}" />
+<div th:replace="~{includes/bootstrapCSS.html :: bootstrapCSS}" />
+<link rel="stylesheet" type="text/css" href="includes/style.css">
+
+</head>
+>>>>>>> 56aca7c4a55d4a0b54c33d90bc4279b606331122
 
 <body>
 
@@ -40,7 +47,7 @@
 			<h2>Test</h2>
 		</div>
 
-		<div class="col-sm-6 text-center">Video</div>
+		<div class="col-sm-5 text-center">Video</div>
 
 		<div class="well col-sm-3 sidenav">
 			<h3>Login</h3>
