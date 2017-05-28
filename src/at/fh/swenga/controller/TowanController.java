@@ -66,11 +66,4 @@ public class TowanController {
 	public String handleAllException(Exception ex) {
 		return "error";
 	}
-	
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String showRegistrationForm(WebRequest request, Model model) {
-		UserModel userModel = new UserModel();
-	    model.addAttribute("user", userModel);
-	    return "register";
-	}
 }
