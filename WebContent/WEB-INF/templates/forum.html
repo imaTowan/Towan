@@ -2,30 +2,59 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>FORUM</title>
+<title>Towan</title>
+<div th:replace="~{includes/bootstrapMeta :: bootstrapMeta}" />
+<div th:replace="~{includes/bootstrapCSS :: bootstrapCSS}" />
+
+<style>
+	.navBtn
+	{
+		background-color: #cccccc;
+		border: 2px solid #bbbbbb;	
+		color: black;
+		font-style: bold;
+		font-size: 20px;
+		font-family: Calibri;
+	}
+	
+	.navBtn:hover
+	{
+		background-color: #bbbbbb;
+	}
+	
+	.jumbotron
+	{
+		margin-bottom: 0px;
+	}
+	
+	.row
+	{
+		width: 100%;
+		margin: 0px;
+		padding: 0px;
+	}
+</style>
+
+
+
 </head>
 <body>
-<h1>This is supposed to be the page users can visit to do some shitposting.</h1>
-<h2>There should be a section some subforums to choose from.</h2>
-<p>And these buttons will be a nav-bar later.</p>
-
+	<div class="jumbotron text-center">
+		<h1>Towan</h1>
+	</div>
 	<div class="row">
-		<div class="col-md-4 col-md-offset-4">
-			<p>
-				<a href="profile">
-					<button type="button" class="btn btn-success">Profile</button>
-				</a>
-				<a href="home">
-					<button type="button" class="btn btn-success">Home</button>
-				</a>
-				<a href="game">
-					<button type="button" class="btn btn-success">Game</button>
-				</a>
-				<a href="settings">
-					<button type="button" class="btn btn-success">Settings</button>
-				</a>
-			</p>
+		<div class="btn-group-justified">
+		  <a href="home" class="btn navBtn">Home</a>
+		  <a href="game" class="btn navBtn">Game</a>
+		  <a href="profile" class="btn navBtn">Profile</a>
+		  <a href="settings" class="btn navBtn">Settings</a>
 		</div>
+	</div>
+	<br/>
+	<div class="row text-center">
+		
+		<h1>Forum</h1>
+	
 	</div>
 	<a href="impressum">About</a>
 </body>
