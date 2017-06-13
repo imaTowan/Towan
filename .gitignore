@@ -19,3 +19,6 @@ project/plugins/project/
 # folders that could lead to conflicts
 .metadata/
 RemoteSystemTempFiles/
+
+#misc
+db.properties
