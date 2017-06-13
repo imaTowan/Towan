@@ -22,8 +22,8 @@ public class UserModel {
 	// Attributes
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
-	@Column(name = "user_id")
-	private long user_id;
+	@Column(name = "userId")
+	private long userId;
 	
 	@Column(nullable = false, length = 15)
 	private String username;
@@ -139,12 +139,12 @@ public class UserModel {
 
 	
 	//Getter & Setter
-	public long getUser_id() {
-		return user_id;
+	public long getUserId() {
+		return userId;
 	}
 
-	public void setUser_id(long user_id) {
-		this.user_id = user_id;
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 
 	public String getUsername() {
@@ -283,7 +283,7 @@ public class UserModel {
 		int result = 1;
 		result = prime * result + ((email_address == null) ? 0 : email_address.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + (int) (user_id ^ (user_id >>> 32));
+		result = prime * result + (int) (userId ^ (userId >>> 32));
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
@@ -307,7 +307,7 @@ public class UserModel {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (user_id != other.user_id)
+		if (userId != other.userId)
 			return false;
 		if (username == null) {
 			if (other.username != null)

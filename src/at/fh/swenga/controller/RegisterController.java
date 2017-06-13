@@ -32,14 +32,6 @@ public class RegisterController {
 	public String doRegister(@Valid @ModelAttribute UserModel newUserModel, BindingResult bindingResult,
 			Model model) {
 		
-		//UserModel user = userRepository.findByUserId(newUserModel.getUser_id());
-		System.out.println("###########################################WRITETODB######################");
-		System.out.println("User: " + newUserModel.getUsername());
-		System.out.println("UserMail: " + newUserModel.getEmail_address());
-		System.out.println("UserID: " + newUserModel.getUser_id());
-
-		
-		
 		userRepository.save(newUserModel);
 			
 		return "verifyInfo";
