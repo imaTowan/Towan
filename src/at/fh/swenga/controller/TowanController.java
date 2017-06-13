@@ -66,5 +66,4 @@ public class TowanController {
 	public String handleAllException(Exception ex) {
 		return "error";
 	}
-
 }

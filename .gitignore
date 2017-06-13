@@ -15,3 +15,10 @@ project/plugins/project/
 # Scala-IDE specific
 .scala_dependencies
 .worksheet
+
+# folders that could lead to conflicts
+.metadata/
+RemoteSystemTempFiles/
+
+#misc
+db.properties
