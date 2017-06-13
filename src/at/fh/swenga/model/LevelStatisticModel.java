@@ -15,8 +15,8 @@ public class LevelStatisticModel {
 	//Attributes
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "user_id")
-	private long user_level_statistic_id;
+	@Column(name = "level_statistic_id")
+	private long level_statistic_id;
 	
 	@Column(nullable = false)
 	private int enemies_slain;
@@ -31,12 +31,15 @@ public class LevelStatisticModel {
 	//Relationships
 	@ManyToOne
 	private LevelModel level;
+	
+	@ManyToOne
+	private UserModel user;
 
 	//Constructors
 	public LevelStatisticModel() {
 	}
 
-	public LevelStatisticModel(int enemies_slain, int waves_completed, int towers_built, UserModel user) {
+	public LevelStatisticModel(int enemies_slain, int waves_completed, int towers_built) {
 		super();
 		this.enemies_slain = enemies_slain;
 		this.waves_completed = waves_completed;
@@ -45,12 +48,12 @@ public class LevelStatisticModel {
 
 	
 	//Getter & Setter
-	public long getUser_level_statistic_id() {
-		return user_level_statistic_id;
+	public long getLevel_statistic_id() {
+		return level_statistic_id;
 	}
 
-	public void setUser_level_statistic_id(long user_level_statistic_id) {
-		this.user_level_statistic_id = user_level_statistic_id;
+	public void setLevel_statistic_id(long user_level_statistic_id) {
+		this.level_statistic_id = user_level_statistic_id;
 	}
 
 	public int getEnemies_slain() {
@@ -85,13 +88,21 @@ public class LevelStatisticModel {
 		this.level = level;
 	}
 
+	public UserModel getUser() {
+		return user;
+	}
+
+	public void setUser(UserModel user) {
+		this.user = user;
+	}
+	
 	
 	//equals & hashcode
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (user_level_statistic_id ^ (user_level_statistic_id >>> 32));
+		result = prime * result + (int) (level_statistic_id ^ (level_statistic_id >>> 32));
 		return result;
 	}
 
@@ -104,7 +115,7 @@ public class LevelStatisticModel {
 		if (getClass() != obj.getClass())
 			return false;
 		LevelStatisticModel other = (LevelStatisticModel) obj;
-		if (user_level_statistic_id != other.user_level_statistic_id)
+		if (level_statistic_id != other.level_statistic_id)
 			return false;
 		return true;
 	}	

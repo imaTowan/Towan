@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import at.fh.swenga.dao.UserRepository;
 import at.fh.swenga.model.UserModel;
-import at.fh.swenga.model.UserRole;
+import at.fh.swenga.model.UserRoleModel;
 
 public class MyUserDetailsService {
 	/*

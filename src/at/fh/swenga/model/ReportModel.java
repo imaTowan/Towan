@@ -15,8 +15,8 @@ public class ReportModel {
 	//Attributes
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "entry_id")
-	private int entry_report_id;
+	@Column(name = "report_id")
+	private int report_id;
 	
 	@Column(nullable = true)
 	private String text;
@@ -26,25 +26,26 @@ public class ReportModel {
 	@ManyToOne
 	private UserModel user;
 
+	@ManyToOne
+	private EntryModel entry;
 	
 	//Constructors
 	public ReportModel() {
 	}
 
-	public ReportModel(String text, EntryModel entry, UserModel user) {
+	public ReportModel(String text) {
 		super();
 		this.text = text;
-		this.user = user;
 	}
 
 	
 	//Getter & Setter
-	public int getEntry_report_id() {
-		return entry_report_id;
+	public int getReport_id() {
+		return report_id;
 	}
 
-	public void setEntry_report_id(int entry_report_id) {
-		this.entry_report_id = entry_report_id;
+	public void setReport_id(int report_id) {
+		this.report_id = report_id;
 	}
 
 	public String getText() {
@@ -63,13 +64,21 @@ public class ReportModel {
 		this.user = user;
 	}
 
+	public EntryModel getEntry() {
+		return entry;
+	}
+
+	public void setEntry(EntryModel entry) {
+		this.entry = entry;
+	}
+	
 	
 	//equals & hashcode
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + entry_report_id;
+		result = prime * result + report_id;
 		return result;
 	}
 
@@ -82,7 +91,7 @@ public class ReportModel {
 		if (getClass() != obj.getClass())
 			return false;
 		ReportModel other = (ReportModel) obj;
-		if (entry_report_id != other.entry_report_id)
+		if (report_id != other.report_id)
 			return false;
 		return true;
 	}
