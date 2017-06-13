@@ -11,7 +11,6 @@ Team
  - SCHOPPER Fabian
 
 Current To Do List:
- - Design Impressum
  - Login Page (Design)
  - Login Page (Functionality)
  - better security implementation for spring-security.xml
