@@ -23,7 +23,7 @@ public class UserModel {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	@Column(name = "user_id")
-	private long userId;
+	private long user_id;
 	
 	@Column(nullable = false, length = 15)
 	private String username;
@@ -37,7 +37,7 @@ public class UserModel {
 	@Column(nullable = true, length = 100)
 	private String signature;
 	
-	@Column(nullable = true, length = 30)
+	@Column(nullable = true, length = 50)
 	private String profile_picture;
 	
 	@Column(nullable = false)
@@ -49,14 +49,8 @@ public class UserModel {
 	@Column(nullable = false)
 	private boolean isActivated;
 	
-	
-	//Progress
-	
 	@Column(nullable = false)
-	private int currentLevel;
-	
-	
-	//Statistic
+	private int current_level;
 	
 	@Column(nullable = false)
 	private int total_enemies_slain;
@@ -69,16 +63,11 @@ public class UserModel {
 	
 	@Column(nullable = false)
 	private int playtime;
-	
-	//Relationships
 
 	
-	@OneToMany(cascade={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH})
-	@JoinColumn(name="user_level_statistic_id", insertable=false, updatable=false)
-	private List<LevelStatisticModel> level_statistics;
-	
+	//Relationships
 	@OneToMany
-	private List<ScoreModel> scores;
+	private List<LevelStatisticModel> level_statistics;
 	
 	@OneToMany
 	private List<EntryModel> entries;
@@ -86,30 +75,48 @@ public class UserModel {
 	@OneToMany
 	private List<ReportModel> reports;
 	
+	@OneToMany
+	private List<UserRoleModel> user_roles;
+	
 	
 	//Constructor
 	public UserModel() {
-		level_statistics = new ArrayList<LevelStatisticModel>();
 	}
 
-	public UserModel(String username, String password, String email_address, boolean isBlocked, boolean isHidden, boolean isActivated, int currentLevel,
-			int total_enemies_slain, int total_waves_completed, int total_towers_built, int playtime) {
+	public UserModel(String username, String password, String email_address) {
 		super();
-		level_statistics = new ArrayList<LevelStatisticModel>();
 		this.username = username;
 		this.password = password;
 		this.email_address = email_address;
+		this.signature = null;
+		this.profile_picture = null;
+		this.isBlocked = false;
+		this.isHidden = false;
+		this.isActivated = false;
+		this.current_level = 0;
+		this.total_enemies_slain = 0;
+		this.total_waves_completed = 0;
+		this.total_towers_built = 0;
+		this.playtime = 0;
+	}
+	
+	public UserModel(String username, String password, String email_address, boolean isBlocked, boolean isHidden, boolean isActivated, int currentLevel,
+			int total_enemies_slain, int total_waves_completed, int total_towers_built, int playtime) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.email_address = email_address;
+		this.signature = null;
+		this.profile_picture = null;
 		this.isBlocked = isBlocked;
 		this.isHidden = isHidden;
 		this.isActivated = isActivated;
-		this.currentLevel = currentLevel;
+		this.current_level = currentLevel;
 		this.total_enemies_slain = total_enemies_slain;
 		this.total_waves_completed = total_waves_completed;
 		this.total_towers_built = total_towers_built;
 		this.playtime = playtime;
 	}
-	
-	
 
 	public UserModel(String username, String password, String email_address, String signature, String profile_picture,
 			boolean isBlocked, boolean isHidden, boolean isActivated , int currentLevel,
@@ -133,11 +140,11 @@ public class UserModel {
 	
 	//Getter & Setter
 	public long getUser_id() {
-		return userId;
+		return user_id;
 	}
 
-	public void setUser_id(long userId) {
-		this.userId = userId;
+	public void setUser_id(long user_id) {
+		this.user_id = user_id;
 	}
 
 	public String getUsername() {
@@ -204,22 +211,12 @@ public class UserModel {
 		this.isActivated = isActivated;
 	}
 
-	
-
 	public List<LevelStatisticModel> getLevel_statistics() {
 		return level_statistics;
 	}
 
 	public void setLevel_statistics(List<LevelStatisticModel> level_statistics) {
 		this.level_statistics = level_statistics;
-	}
-
-	public List<ScoreModel> getScores() {
-		return scores;
-	}
-
-	public void setScores(List<ScoreModel> scores) {
-		this.scores = scores;
 	}
 
 	public List<EntryModel> getEntries() {
@@ -238,18 +235,13 @@ public class UserModel {
 		this.reports = reports;
 	}
 	
-	
-
-	
 	public int getCurrentLevel() {
-		return currentLevel;
+		return current_level;
 	}
 	
-	public void setCurrentLevel(int currentLevel) {
-		this.currentLevel = currentLevel;
+	public void setCurrentLevel(int current_level) {
+		this.current_level = current_level;
 	}
-	
-	
 	
 	public int getTotal_enemies_slain() {
 		return total_enemies_slain;
@@ -291,7 +283,7 @@ public class UserModel {
 		int result = 1;
 		result = prime * result + ((email_address == null) ? 0 : email_address.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + (int) (userId ^ (userId >>> 32));
+		result = prime * result + (int) (user_id ^ (user_id >>> 32));
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
@@ -315,7 +307,7 @@ public class UserModel {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (userId != other.userId)
+		if (user_id != other.user_id)
 			return false;
 		if (username == null) {
 			if (other.username != null)
@@ -324,6 +316,4 @@ public class UserModel {
 			return false;
 		return true;
 	}
-	
-
 }

@@ -20,9 +20,12 @@ public class LevelModel {
 
 	//Attributes
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "level_id")
 	private int level_id;
+	
+	@Column(nullable = true)
+	private String creator;
 	
 	@Column(nullable = false)
 	private int enemy_count;
@@ -30,28 +33,40 @@ public class LevelModel {
 	@Column(nullable = false)
 	private int wave_count;
 	
+	@Column(nullable = false)
+	private int top_score;
+	
+	@Column(nullable = true)
+	private String top_score_user;
+	
 	
 	//Relationships
 	@OneToMany
 	private List<LevelStatisticModel> level_statistics;
-	
-	@OneToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH})
-	@JoinColumn(name="level_score_id", insertable=false, updatable=false)
-	private ScoreModel score;
 
 	
 	//Constructors
 	public LevelModel() {
-		score = new ScoreModel();
 	}
 
 	public LevelModel(int enemy_count, int wave_count) {
 		super();
-		score = new ScoreModel();
+		this.creator = null;
 		this.enemy_count = enemy_count;
 		this.wave_count = wave_count;
+		this.top_score = 0;
+		this.top_score_user = null;
 	}
 
+	public LevelModel(String creator, int enemy_count, int wave_count) {
+		super();
+		this.creator = creator;
+		this.enemy_count = enemy_count;
+		this.wave_count = wave_count;
+		this.top_score = 0;
+		this.top_score_user = null;
+	}
+	
 	
 	//Getter & Setter
 	public int getLevel_id() {
@@ -85,16 +100,31 @@ public class LevelModel {
 	public void setLevel_statistics(List<LevelStatisticModel> level_statistics) {
 		this.level_statistics = level_statistics;
 	}
-
-	public ScoreModel getScore() {
-		return score;
-	}
-
-	public void setScore(ScoreModel score) {
-		this.score = score;
-	}
-
 	
+	public String getCreator() {
+		return creator;
+	}
+
+	public void setCreator(String creator) {
+		this.creator = creator;
+	}
+
+	public int getTop_score() {
+		return top_score;
+	}
+
+	public void setTop_score(int top_score) {
+		this.top_score = top_score;
+	}
+
+	public String getTop_score_user() {
+		return top_score_user;
+	}
+
+	public void setTop_score_user(String top_score_user) {
+		this.top_score_user = top_score_user;
+	}
+
 	//equals & hashcode
 	@Override
 	public int hashCode() {
@@ -116,12 +146,5 @@ public class LevelModel {
 		if (level_id != other.level_id)
 			return false;
 		return true;
-	}
-	
-	
-	//Methods
-	@PrePersist
-	public void initializeScore() {
-		this.score.setLevel_score_id(level_id);
 	}
 }

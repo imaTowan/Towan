@@ -18,7 +18,7 @@ public class SubforumModel {
 	//Attributes
 	@Id
 	@Column(name = "subforum_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int subforum_id;
 	
 	@Column(nullable = false, length = 30)

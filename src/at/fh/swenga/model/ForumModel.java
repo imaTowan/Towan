@@ -17,7 +17,7 @@ public class ForumModel {
 	//Attributes
 	@Id
 	@Column(name = "forum_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int forum_id;
 	
 	@Column(nullable = false, length = 30)

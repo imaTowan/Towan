@@ -21,7 +21,7 @@ public class EntryModel {
 
 	//Attributes
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="entry_id")
 	private int entry_id;
 	
@@ -45,25 +45,32 @@ public class EntryModel {
 	@ManyToOne
 	private UserModel user;
 	
-	@OneToMany(cascade={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH})
-	@JoinColumn(name="entry_report_id", insertable=false, updatable=false)
+	@OneToMany
 	private List<ReportModel> reports;
 
 	
 	//Constructors
 	public EntryModel() {
-		reports = new ArrayList<ReportModel>();
 	}
-
+	
 	public EntryModel(String text, int report_count, boolean isPinned, boolean isFlagged) {
 		super();
-		reports = new ArrayList<ReportModel>();
 		this.text = text;
 		this.report_count = report_count;
 		this.isPinned = isPinned;
 		this.isFlagged = isFlagged;
+		this.reports = new ArrayList<ReportModel>();
 	}
 
+	public EntryModel(String text) {
+		super();
+		this.text = text;
+		this.report_count = 0;
+		this.isPinned = false;
+		this.isFlagged = false;
+		this.reports = new ArrayList<ReportModel>();
+	}
+	
 	
 	//Getter & Setter
 	public int getEntry_id() {
@@ -152,13 +159,5 @@ public class EntryModel {
 		if (entry_id != other.entry_id)
 			return false;
 		return true;
-	}
-	
-	//Methods
-	@PrePersist
-	public void initializeReport() {
-		for (ReportModel report : reports){
-			report.setEntry_report_id(entry_id);
-		}
 	}
 }
