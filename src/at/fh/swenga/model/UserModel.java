@@ -20,10 +20,10 @@ import javax.persistence.Table;
 public class UserModel {
 
 	// Attributes
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
-	private long user_id;
+	private long userId;
 	
 	@Column(nullable = false, length = 15)
 	private String username;
@@ -49,14 +49,29 @@ public class UserModel {
 	@Column(nullable = false)
 	private boolean isActivated;
 	
-	//Relationships
-	@OneToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH})
-	@JoinColumn(name="user_progress_id", insertable=false, updatable=false)
-	private ProgressModel progress;
 	
-	@OneToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH})
-	@JoinColumn(name="user_statistic_id", insertable=false, updatable=false)
-	private StatisticModel statistic;
+	//Progress
+	
+	@Column(nullable = false)
+	private int currentLevel;
+	
+	
+	//Statistic
+	
+	@Column(nullable = false)
+	private int total_enemies_slain;
+	
+	@Column(nullable = false)
+	private int total_waves_completed;
+	
+	@Column(nullable = false)
+	private int total_towers_built;
+	
+	@Column(nullable = false)
+	private int playtime;
+	
+	//Relationships
+
 	
 	@OneToMany(cascade={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH})
 	@JoinColumn(name="user_level_statistic_id", insertable=false, updatable=false)
@@ -74,15 +89,12 @@ public class UserModel {
 	
 	//Constructor
 	public UserModel() {
-		progress = new ProgressModel();
-		statistic = new StatisticModel();
 		level_statistics = new ArrayList<LevelStatisticModel>();
 	}
 
-	public UserModel(String username, String password, String email_address, boolean isBlocked, boolean isHidden, boolean isActivated) {
+	public UserModel(String username, String password, String email_address, boolean isBlocked, boolean isHidden, boolean isActivated, int currentLevel,
+			int total_enemies_slain, int total_waves_completed, int total_towers_built, int playtime) {
 		super();
-		progress = new ProgressModel();
-		statistic = new StatisticModel();
 		level_statistics = new ArrayList<LevelStatisticModel>();
 		this.username = username;
 		this.password = password;
@@ -90,13 +102,19 @@ public class UserModel {
 		this.isBlocked = isBlocked;
 		this.isHidden = isHidden;
 		this.isActivated = isActivated;
+		this.currentLevel = currentLevel;
+		this.total_enemies_slain = total_enemies_slain;
+		this.total_waves_completed = total_waves_completed;
+		this.total_towers_built = total_towers_built;
+		this.playtime = playtime;
 	}
+	
+	
 
 	public UserModel(String username, String password, String email_address, String signature, String profile_picture,
-			boolean isBlocked, boolean isHidden, boolean isActivated) {
+			boolean isBlocked, boolean isHidden, boolean isActivated , int currentLevel,
+			int total_enemies_slain, int total_waves_completed, int total_towers_built, int playtime) {
 		super();
-		progress = new ProgressModel();
-		statistic = new StatisticModel();
 		level_statistics = new ArrayList<LevelStatisticModel>();
 		this.username = username;
 		this.password = password;
@@ -106,16 +124,20 @@ public class UserModel {
 		this.isBlocked = isBlocked;
 		this.isHidden = isHidden;
 		this.isActivated = isActivated;
+		this.total_enemies_slain = total_enemies_slain;
+		this.total_waves_completed = total_waves_completed;
+		this.total_towers_built = total_towers_built;
+		this.playtime = playtime;
 	}
 
 	
 	//Getter & Setter
 	public long getUser_id() {
-		return user_id;
+		return userId;
 	}
 
-	public void setUser_id(long user_id) {
-		this.user_id = user_id;
+	public void setUser_id(long userId) {
+		this.userId = userId;
 	}
 
 	public String getUsername() {
@@ -182,21 +204,7 @@ public class UserModel {
 		this.isActivated = isActivated;
 	}
 
-	public ProgressModel getProgress() {
-		return progress;
-	}
-
-	public void setProgress(ProgressModel progress) {
-		this.progress = progress;
-	}
-
-	public StatisticModel getStatistic() {
-		return statistic;
-	}
-
-	public void setStatistic(StatisticModel statistic) {
-		this.statistic = statistic;
-	}
+	
 
 	public List<LevelStatisticModel> getLevel_statistics() {
 		return level_statistics;
@@ -229,6 +237,51 @@ public class UserModel {
 	public void setReports(List<ReportModel> reports) {
 		this.reports = reports;
 	}
+	
+	
+
+	
+	public int getCurrentLevel() {
+		return currentLevel;
+	}
+	
+	public void setCurrentLevel(int currentLevel) {
+		this.currentLevel = currentLevel;
+	}
+	
+	
+	
+	public int getTotal_enemies_slain() {
+		return total_enemies_slain;
+	}
+
+	public void setTotal_enemies_slain(int total_enemies_slain) {
+		this.total_enemies_slain = total_enemies_slain;
+	}
+
+	public int getTotal_waves_completed() {
+		return total_waves_completed;
+	}
+
+	public void setTotal_waves_completed(int total_waves_completed) {
+		this.total_waves_completed = total_waves_completed;
+	}
+
+	public int getTotal_towers_built() {
+		return total_towers_built;
+	}
+
+	public void setTotal_towers_built(int total_towers_built) {
+		this.total_towers_built = total_towers_built;
+	}
+
+	public int getPlaytime() {
+		return playtime;
+	}
+
+	public void setPlaytime(int playtime) {
+		this.playtime = playtime;
+	}
 
 	
 	//equals & hashcode
@@ -238,7 +291,7 @@ public class UserModel {
 		int result = 1;
 		result = prime * result + ((email_address == null) ? 0 : email_address.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + (int) (user_id ^ (user_id >>> 32));
+		result = prime * result + (int) (userId ^ (userId >>> 32));
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
@@ -262,7 +315,7 @@ public class UserModel {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (user_id != other.user_id)
+		if (userId != other.userId)
 			return false;
 		if (username == null) {
 			if (other.username != null)
@@ -272,14 +325,5 @@ public class UserModel {
 		return true;
 	}
 	
-	
-	//Methods
-	@PrePersist
-	public void initializeIdentifyingRelationships() {
-		this.progress.setUser_progress_id(user_id);
-		this.statistic.setUser_statistic_id(user_id);
-		for (LevelStatisticModel level_statistic : level_statistics){
-			level_statistic.setUser_level_statistic_id(user_id);
-		}
-	}
+
 }

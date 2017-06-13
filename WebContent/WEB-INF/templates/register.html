@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 <title>Register page</title>
 <div th:replace="~{includes/bootstrapMeta :: bootstrapMeta}" />
@@ -34,9 +36,8 @@
 	border: 5px solid black;
 }
 
-.well
-{
-	padding: 10px 0px 10px 0px;	
+.well {
+	padding: 10px 0px 10px 0px;
 }
 </style>
 
@@ -44,19 +45,66 @@
 <body>
 	<div class="container" role="main">
 		<div class="row">
-			<div class="col-md-4 col-md-offset-4">
-				<form th:action="@{/register}" method="post">
-					<h2 class="form-signin-heading">Create an account!</h2>
-					<p> </p>
+			<div class="col-md-8 col-md-offset-2">
+				<form class="form-horizontal" method="post"
+					th:action="${user} ? @{register}">
+					<fieldset>
+						<div class="form-group">
+						
+							<!---------------  Email ---------------- -->
+						
+							<label for="inputEmail" class="control-label">Email Adress</label>
+							<div class="col-md-8">
+								<input class="form-control" id="inputEmail" type="text"
+									name="email_address" th:value="${user} ? ${user.email_address}">
+							</div>
+							<br/>
+
+							<!---------------  Username ---------------- -->
+							
+							<label for="inputUsername" class="control-label">Username</label>
+							<div class="col-md-8">
+								<input class="form-control" id="inputUsername" type="text"
+									name="username" th:value="${user} ? ${user.username}">
+							</div>
+							<br/>
+													
+							<!---------------  Password ---------------- -->
+							
+							<label for="inputPassword" class="control-label">Password</label>
+							<div class="col-md-8">
+								<input class="form-control" id="inputPassword" type="text"
+									name="password" th:value="${user} ? password">
+							</div>
+							<br/>
+						</div>
+						
+						<!---------------  buttons ---------------- -->
+						<div class="form-group">
+							<div class="col-md-10 col-md-offset-2">
+								<button type="submit" class="btn btn-primary">Submit</button>
+								<a href="index">
+									<button type="button" class="btn btn-default">Cancel</button>
+								</a>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+
+
+
+		<!--  
 					<div class="well">
 						<p>Email address: </p>
-						<input type="text" id="email" class="form-control" placeholder="john.doe@gmail.com" required autofocus name="email"> 
+						<input type="text" id="email" class="form-control" placeholder="john.doe@gmail.com" required autofocus name="email" th:value="${user} ? ${user.email_address}"> 
 						<p> </p>
 						<p>Username: </p>
-						<input type="text" id="username" class="form-control" placeholder="User" required autofocus name="username"> 
+						<input type="text" id="username" class="form-control" placeholder="User" required autofocus name="username" th:value="${user} ? ${user.username}"> 
 						<p> </p>
 						<p>Password: </p>
-						<input type="password" id="password" class="form-control" placeholder="Password" required name="password">
+						<input type="password" id="pwd" class="form-control" placeholder="Password" required name="password" th:value="${user} ? ${user.password}">
 						<p> </p>
 						<p>Confirm password: </p>
 						<input type="password" id="passwordAgain" class="form-control" placeholder="Password" required name="password">
@@ -64,9 +112,9 @@
 						<button class="buttonStyle" type="submit">Sign in</button>
 						<p> </p>
 						<a href="index">Cancel</a>
-					</div>
-					
-<!--  			    __                   __
+					</div>-->
+
+		<!--  			    __                   __
                    | _'-._           _.-'_ |
                    | '::. '.       .' .::' |
                     \ '::\  \     /  /::' /
@@ -91,12 +139,10 @@
                     \'-'/             \'-'/
                      `"`               `"`
 					
--->	
-					
-					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-				</form>
-			</div>
-		</div>
+-->
+
+		<input type="hidden" th:name="${_csrf.parameterName}"
+			th:value="${_csrf.token}">
 	</div>
 </body>
 </html>
