@@ -49,6 +49,19 @@
 	color: #000000;
 	border: 5px solid black;
 }
+
+footer {
+   position:absolute;
+   bottom:0;
+
+}
+
+#imageSize {
+	height: 75%;
+	width: 50%;
+	max-height: 800px;
+	max-width: 750px;
+}
 ​
 	
 </style>
@@ -71,14 +84,18 @@
 			</div>
 	</br>
 	<div class="row text-center">
-		
 		<h1>Start your game here!</h1>
-		<img src="ExamplePicture.jpg" alt="example" style="width:500px;height:350px;">
-	</br>
-​	<a href="game">
-		<button class="buttonStyle">Start Game!</button>
-	</a>
-
+		</br>
+		<img id="imageSize" src="ExamplePicture.jpg">
+		
+		<br>
+		<a href="game">
+			<button class="buttonStyle">Start Game!</button>
+		</a>
+	</div>
+<footer>
+	<a href="impressum">About</a>
+</footer>
 
 </body>
 </html>
