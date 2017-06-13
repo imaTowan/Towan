@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="utf-8">
 <title>Towan</title>
 <div th:replace="~{includes/bootstrapMeta :: bootstrapMeta}" />
 <div th:replace="~{includes/bootstrapCSS :: bootstrapCSS}" />
@@ -33,6 +33,24 @@
 		margin: 0px;
 		padding: 0px;
 	}
+	
+.buttonStyle {
+	background-color: #000000;
+	color: #ffffff;
+	font-family: "Calibri";
+	font-size: 20px;
+	height: 40px;
+	width: 200px;
+	margin-top: 5mm;
+}
+
+.buttonStyle:hover {
+	background-color: #ffffff;
+	color: #000000;
+	border: 5px solid black;
+}
+​
+	
 </style>
 
 
@@ -49,13 +67,18 @@
 		  <a href="forum" class="btn navBtn">Forum</a>
 		  <a href="settings" class="btn navBtn">Settings</a>
 		</div>
-	</div>
-	<br/>
+		
+			</div>
+	</br>
 	<div class="row text-center">
 		
-		<h1>Bad Luck. There is <b>NO</b> Game!</h1>
-	
-	</div>
-	<a href="impressum">About</a>
+		<h1>Start your game here!</h1>
+		<img src="ExamplePicture.jpg" alt="example" style="width:500px;height:350px;">
+	</br>
+​	<a href="game">
+		<button class="buttonStyle">Start Game!</button>
+	</a>
+
+
 </body>
 </html>
