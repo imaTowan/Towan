@@ -14,7 +14,6 @@ public class StatisticModel {
 
 	//Attributes
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "user_id")
 	private long user_statistic_id;
 	

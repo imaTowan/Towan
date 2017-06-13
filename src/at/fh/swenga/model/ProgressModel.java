@@ -13,7 +13,6 @@ public class ProgressModel {
 
 	//Attributes
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="user_id")
 	private long user_progress_id;
 	
