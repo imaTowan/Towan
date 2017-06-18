@@ -49,18 +49,12 @@
 				<form class="form-horizontal" method="post"
 					th:action="${user} ? @{register}">
 					<fieldset>
+					
+					
+					<!-- 
 						<div class="form-group">
 						
-							<!---------------  Email ---------------- -->
-						
-							<label for="inputEmail" class="control-label">Email Adress</label>
-							<div class="col-md-8">
-								<input class="form-control" id="inputEmail" type="text"
-									name="email_address" th:value="${user} ? ${user.email_address}">
-							</div>
-							<br/>
-
-							<!---------------  Username ---------------- -->
+							<!---------------  Username ---------------- --
 							
 							<label for="inputUsername" class="control-label">Username</label>
 							<div class="col-md-8">
@@ -69,17 +63,27 @@
 							</div>
 							<br/>
 													
-							<!---------------  Password ---------------- -->
+							<!---------------  Password ---------------- --
 							
 							<label for="inputPassword" class="control-label">Password</label>
 							<div class="col-md-8">
-								<input class="form-control" id="inputPassword" type="text"
+								<input class="form-control" id="inputPassword" type="password"
 									name="password" th:value="${user} ? password">
+							</div>
+							<br/>
+							
+							
+							<!---------------  Email ---------------- --
+						
+							<label for="inputEmail" class="control-label">Email Adress</label>
+							<div class="col-md-8">
+								<input class="form-control" id="inputEmail" type="text"
+									name="email_address" th:value="${user} ? ${user.email_address}">
 							</div>
 							<br/>
 						</div>
 						
-						<!---------------  buttons ---------------- -->
+						<!---------------  buttons ---------------- --
 						<div class="form-group">
 							<div class="col-md-10 col-md-offset-2">
 								<button type="submit" class="btn btn-primary">Submit</button>
@@ -92,27 +96,31 @@
 				</form>
 			</div>
 		</div>
+		
+		 -->
 
 
 
-		<!--  
-					<div class="well">
+		
+					<div class="well form-group">
 						<p>Email address: </p>
-						<input type="text" id="email" class="form-control" placeholder="john.doe@gmail.com" required autofocus name="email" th:value="${user} ? ${user.email_address}"> 
+						<input id="inputEmail" type="text" name="email_address" class="form-control" placeholder="john.doe@gmail.com" required autofocus th:value="${user} ? ${user.email_address}"> 
 						<p> </p>
 						<p>Username: </p>
-						<input type="text" id="username" class="form-control" placeholder="User" required autofocus name="username" th:value="${user} ? ${user.username}"> 
+						<input id="inputUsername" type="text" name="username" class="form-control" placeholder="User" required autofocus th:value="${user} ? ${user.username}"> 
 						<p> </p>
 						<p>Password: </p>
-						<input type="password" id="pwd" class="form-control" placeholder="Password" required name="password" th:value="${user} ? ${user.password}">
+						<input id="inputPassword" type="password" name="password" class="form-control" placeholder="Password" required th:value="${user} ? ${user.password}">
 						<p> </p>
-						<p>Confirm password: </p>
-						<input type="password" id="passwordAgain" class="form-control" placeholder="Password" required name="password">
-						<p> </p>
-						<button class="buttonStyle" type="submit">Sign in</button>
-						<p> </p>
-						<a href="index">Cancel</a>
-					</div>-->
+						<div class="form-group">
+							<div class="col-md-10 col-md-offset-2">
+								<button type="submit" class="btn btn-primary">Submit</button>
+								<a href="index">
+									<button type="button" class="btn btn-default">Cancel</button>
+								</a>
+							</div>
+						</div>
+					</div>
 
 		<!--  			    __                   __
                    | _'-._           _.-'_ |

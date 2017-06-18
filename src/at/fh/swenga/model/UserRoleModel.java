@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import javax.persistence.GenerationType;
 
 @Entity
@@ -32,7 +31,7 @@ public class UserRoleModel implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "userId", nullable = false)
+	@JoinColumn(name = "username", nullable = false)
 	public UserModel getUser() {
 		return user;
 	}
