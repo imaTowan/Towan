@@ -1,5 +1,10 @@
 package at.fh.swenga.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -13,7 +18,10 @@ import at.fh.swenga.model.UserModel;
 public class TowanController {
 
 	@RequestMapping(value = {"/", "index"})
-	public String showWelcome() {
+	public String showWelcome(Model model) {
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		model.addAttribute("currUsername",auth.getName());
 		return "index";
 	}
 	
@@ -25,6 +33,15 @@ public class TowanController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String doLogin() {
 		return "home";
+	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String doLogout(HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();  
+	    session.invalidate();  
+		
+		return "index";
 	}
 	
 	@RequestMapping(value = "/home")
