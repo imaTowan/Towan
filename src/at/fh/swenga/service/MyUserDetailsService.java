@@ -18,15 +18,17 @@ import at.fh.swenga.dao.UserRepository;
 import at.fh.swenga.model.UserModel;
 import at.fh.swenga.model.UserRoleModel;
 
-public class MyUserDetailsService {
-	/*
+@Service
+@Transactional
+public class MyUserDetailsService implements UserDetailsService{
+	
 	@Autowired
 	UserRepository userDao;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = null;
-		List<User> userList = userDao.findByUsername(username);
+		UserModel user = null;
+		List<UserModel> userList = userDao.findByUsername(username);
 		if (userList != null && userList.size() > 0) {
 			user = userList.get(0);
 		}
@@ -37,22 +39,22 @@ public class MyUserDetailsService {
 		return buildUserForAuthentication(user, authorities);
 	}
 
-	private org.springframework.security.core.userdetails.User buildUserForAuthentication(User user,
+	private org.springframework.security.core.userdetails.User buildUserForAuthentication(UserModel user,
 			List<GrantedAuthority> authorities) {
 		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
-				user.isEnabled(),
+				/*user.isActivated(),
 				true, // account not expired
 				true, // credentials not expired
-				true, // account not locked
+				true, // account not locked*/
 				authorities);
 	}
 
-	private List<GrantedAuthority> buildUserAuthority(Set<UserRole> userRoles) {
+	private List<GrantedAuthority> buildUserAuthority(Set<UserRoleModel> userRoles) {
 		Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
-		for (UserRole userRole : userRoles) {
+		for (UserRoleModel userRole : userRoles) {
 			setAuths.add(new SimpleGrantedAuthority(userRole.getRole()));
 		}
 		List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(setAuths);
 		return Result;
-	}*/
+	}
 }

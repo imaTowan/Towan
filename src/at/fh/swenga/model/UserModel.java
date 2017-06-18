@@ -1,19 +1,20 @@
 package at.fh.swenga.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrePersist;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name = "USER")
@@ -63,6 +64,9 @@ public class UserModel {
 	
 	@Column(nullable = false)
 	private int playtime;
+	
+	
+
 
 	
 	//Relationships
@@ -75,8 +79,8 @@ public class UserModel {
 	@OneToMany
 	private List<ReportModel> reports;
 	
-	@OneToMany
-	private List<UserRoleModel> user_roles;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	private Set<UserRoleModel> userRole = new HashSet<UserRoleModel>(0);
 	
 	
 	//Constructor
@@ -273,6 +277,14 @@ public class UserModel {
 
 	public void setPlaytime(int playtime) {
 		this.playtime = playtime;
+	}
+	
+	public Set<UserRoleModel> getUserRole() {
+		return userRole;
+	}
+
+	public void setUserRole(Set<UserRoleModel> userRole) {
+		this.userRole = userRole;
 	}
 
 	

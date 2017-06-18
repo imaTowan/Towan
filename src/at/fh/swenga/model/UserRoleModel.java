@@ -1,6 +1,5 @@
 package at.fh.swenga.model;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,17 +30,17 @@ public class UserRoleModel implements java.io.Serializable {
 	public void setUserRoleId(Integer userRoleId) {
 		this.userRoleId = userRoleId;
 	}
-/*
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "username", nullable = false)
-	public User getUser() {
+	@JoinColumn(name = "userId", nullable = false)
+	public UserModel getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(UserModel user) {
 		this.user = user;
 	}
-*/
+
 	@Column(name = "role", nullable = false, length = 45)
 	public String getRole() {
 		return role;
