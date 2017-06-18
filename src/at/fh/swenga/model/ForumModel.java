@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 @Entity
 @Table(name = "FORUM")
 public class ForumModel {
@@ -27,6 +30,7 @@ public class ForumModel {
 	
 	//Relationships
 	@OneToMany(fetch=FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	private List<SubforumModel> subforums;
 
 	
