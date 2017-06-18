@@ -54,10 +54,6 @@ public class TowanController {
 		return "profile";
 	}
 	
-	@RequestMapping(value = "/forum")
-	public String showForum() {
-		return "forum";
-	}
 	
 	@RequestMapping(value = "/game")
 	public String showGame() {

@@ -54,7 +54,26 @@
 	<div class="row text-center">
 		
 		<h1>Forum</h1>
-	
+	<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<table data-toggle="table" class="table table-striped">
+					<thead>
+						<tr>
+							<th data-sortable="true">Topic</th>
+							<th data-sortable="true">Number of Subforums</th>						
+						</tr>
+					</thead>
+					<tbody>
+						<!--  list all items ----------------------------------------------------------- -->
+						<tr th:each="forums : ${#request.getAttribute('forums')}">
+							<a href="forum/subforum">
+							<td th:text="${forums.name}"></td>
+							</a>
+							<td th:text="${#lists.size(forums.subforums)}"></td>
+						</tr>
+						
+					</tbody>
+	</table>
 	</div>
 	<a href="impressum">About</a>
 </body>
