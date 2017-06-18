@@ -1,13 +1,11 @@
 package at.fh.swenga.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.context.request.WebRequest;
 
-import at.fh.swenga.model.UserModel;
+import at.fh.swenga.game.data.Boot;
 
 @Controller
 public class TowanController {
@@ -42,9 +40,16 @@ public class TowanController {
 		return "forum";
 	}
 	
-	@RequestMapping(value = "/game")
+	@RequestMapping(value = "/game", method = RequestMethod.GET)
 	public String showGame() {
 		return "game";
+	}
+	
+	@RequestMapping(value = "/towanGame")
+	public String startGame() {
+		Boot game = new Boot();
+		game = null;
+		return "towanGame";
 	}
 	
 	@RequestMapping(value = "/settings")
@@ -64,6 +69,8 @@ public class TowanController {
 	
 	@ExceptionHandler(Exception.class)
 	public String handleAllException(Exception ex) {
+		System.out.println("but an error occured.");
+		ex.printStackTrace();
 		return "error";
 	}
 }

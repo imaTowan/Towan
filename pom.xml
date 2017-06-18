@@ -78,7 +78,7 @@
 		</dependency>
 		
 		
-		<!-- Spring Web -->
+		<!-- Spring Web and everything related to it -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
@@ -178,11 +178,26 @@
         </dependency>
         
         
+        <!-- Game dependencies -->
+		<dependency>
+		    <groupId>org.lwjgl.lwjgl</groupId>
+		    <artifactId>lwjgl</artifactId>
+		    <version>2.9.3</version>
+		</dependency>
+        
+
         <!-- Needed for exception prevention -->
         <!-- NoSuchMethodKey -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
+		</dependency>
+        
+        <!-- catalina.LifecycleException, helps sometimes -->
+        <dependency>
+		    <groupId>commons-digester</groupId>
+		    <artifactId>commons-digester</artifactId>
+		    <version>2.1</version>
 		</dependency>
         
 	</dependencies>
