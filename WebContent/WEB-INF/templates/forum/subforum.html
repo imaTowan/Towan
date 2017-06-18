@@ -60,17 +60,16 @@
 					<thead>
 						<tr>
 							<th data-sortable="true">Topic</th>
-							<th data-sortable="true">Number of Subforums</th>						
+							<th data-sortable="true">Number of Entries</th>						
 						</tr>
 					</thead>
 					<tbody>
 						<!--  list all items ----------------------------------------------------------- -->
 						<tr th:each="forums : ${#request.getAttribute('forums')}">
 							<td>
-							<a href = "forum/subforum" th:text="${forums.name}">
+							<a href = "entry" th:text="${forums.title}"></td>
 							</a>
-							</td>
-							<td th:text="${#lists.size(forums.subforums)}"></td>
+							<td th:text="${#lists.size(forums.entries)}"></td>
 						</tr>
 						
 					</tbody>
