@@ -5,6 +5,9 @@
 <title>Towan</title>
 <div th:replace="~{includes/bootstrapMeta :: bootstrapMeta}" />
 <div th:replace="~{includes/bootstrapCSS :: bootstrapCSS}" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
 
 <style>
 	.navBtn
@@ -33,6 +36,102 @@
 		margin: 0px;
 		padding: 0px;
 	}
+	
+	body{
+	background: #flf3fa;
+	}
+
+	.container{
+		width: 100%;
+		margin: 0px;
+		padding: 0px;
+	}
+	.profile{
+		margin: 20px 0;
+		padding-left: 10%
+	}
+	
+	.profile-sidebar{
+		float: left;
+		margin: 0;
+		padding: 20px 0;
+		background: #fff;
+	}
+	
+	.profile-user-pic{
+		float: none;
+		margin: 0 auto;
+		width: 50%;
+		height:50%;
+		min-width: 250px;
+		min-height: 250px; 
+
+	}
+	
+	
+	.profile-user-name{
+		color: #Sa73al;
+		font-size: 18px;
+		fong-weight: 600;
+		margin-bottom: 7px;
+		margin-left: 35%;
+		
+	}
+	
+	.profile-user-job{
+		text-transform: uppercase;
+		color: #5babdl;
+		font-size: 13px;
+		font-weight: 600;
+		margin-bottom: 15px;
+		margin-left: 42%;
+	
+	}
+	
+	.profile-user-menu{
+		margin-top: 30px;
+
+		
+	}
+	
+	ul li{
+	border-bottom: 2px solid #f0f4f7 !important;
+	}
+	
+	.profile-user-menu ul li{
+		font-size: 14px;
+		font-weight: 400;
+	}
+	
+	.profile-user-menu ul li i{
+		margin-right: 8px;
+		font-size: 16px;
+	}
+
+	li.active i{
+	color: #5babdl;
+	background-color: #f6fafb;
+	border-left: 2px solid #5badbl;
+	margin-left: -3px;
+	}
+	
+	.profile-content{
+		text-align: center;
+		width: 70%;
+		margin-left: 0%;
+		margin-top: -15%;
+		padding-left: 50%;
+		background: #fff;
+		
+	}
+	
+	#footer {
+		margin-top: 8%;
+	    margin-left: 18%;
+	    height:0%;   /* Height of the footer */
+	    width: 70%;
+	}
+	
 </style>
 
 
@@ -48,14 +147,46 @@
 		  <a href="game" class="btn navBtn">Game</a>
 		  <a href="forum" class="btn navBtn">Forum</a>
 		  <a href="settings" class="btn navBtn">Settings</a>
-		</div>
 	</div>
-	<br/>
-	<div class="row text-center">
-		
-		<h1>This is the Profile Page</h1>
 	
-	</div>
-	<a href="impressum">About</a>
+	<br/>
+		<div class="container">
+			<div class="row profile">
+				<div class ="col-md-3">
+					<div class="profil-sidebar">
+						<div class="profile-user-pic">
+							<img src="default-userpic.jpg" alt="userpic" class="img-responsive img-circle" style="width:800px; height:500px">
+							<div class="profile-user-title">
+								<div class="profile-user-name">
+									Username
+									</div>
+										<div class="profile-user-job">
+											User						
+										</div>		
+											<div class="profile-user-menu">
+												<ul class="user-nav">
+													<li class="active"><i class="glyphicon gylphicon-time">Playtime:        ...</i></li>
+													<li class="active"><i class="glyphicon gylphicon-time">Enemies Slain:   ...</i></li>
+													<li class="active"><i class="glyphicon gylphicon-time">Towers Build:    ...</i></li>
+													<li class="active"><i class="glyphicon gylphicon-time">Waves Completed: ...</i></li>
+												</ul>
+											</div>
+										</div>
+									</div>						
+								</div>
+							</div>
+						</div>
+					<div class="profile-content">
+						<p> The stats will be here! </p>
+					</div>
+							
+			</div>
+		</div>
+		
+		<div id=footer>
+			<a href="impressum">About</a>
+		</div>
+
+	
 </body>
 </html>
