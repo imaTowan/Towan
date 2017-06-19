@@ -1,0 +1,41 @@
+@CHARSET "ISO-8859-1";
+
+body{
+	background: #flf3fa;
+}
+
+.proflie{
+	margin: 20px 0;
+}
+
+.prifle-sidebar{
+	padding: 20px 0 10px 0;
+	background: #fff;
+}
+
+.profile-user-pic{
+	float: none;
+	margin: 0 auto;
+	width: 50%;
+	height: 50%;
+}
+
+.profile-user-title{
+	text-align: center;
+	margin-top: 20px;
+}
+
+.profile-user-name{
+	color: #Sa73al;
+	font-size: 18px;
+	fong-weight: 630;
+	margin-bottom: 7px;
+}
+
+.profile-user-job{
+	text-transform: uppercase;
+	color: #5babdl;
+	font-size: 13px;
+	font-weight: 600;
+	margin-bottom: 15px;
+}
