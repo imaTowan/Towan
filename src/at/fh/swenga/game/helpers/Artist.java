@@ -19,8 +19,8 @@ public class Artist {
 	public static final int WIDTH = 960, HEIGHT = 640, TILE_SIZE = 32, MENU_WIDTH = 96;
 	// Change FileNames and Game Version here
 	public static final String TITLE = "Towan 1.0.101";
-	public static final String MAP_NAME = "C://towan/data/map";
-	public static final String HIGHSCORE_FILENAME = "C://towan/data/highscore";
+	public static final String MAP_NAME = "/tmp/towan/data/map";
+	public static final String HIGHSCORE_FILENAME = "/tmp/towan/data/highscore";
 	
 	public static void BeginSession(){
 		Display.setTitle(TITLE);

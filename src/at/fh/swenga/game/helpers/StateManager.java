@@ -3,6 +3,9 @@ package at.fh.swenga.game.helpers;
 import static at.fh.swenga.game.helpers.Artist.MAP_NAME;
 import static at.fh.swenga.game.helpers.Leveler.*;
 
+import java.io.File;
+import java.io.IOException;
+
 import at.fh.swenga.game.data.Editor;
 import at.fh.swenga.game.data.Game;
 import at.fh.swenga.game.data.Grid;
@@ -52,8 +55,17 @@ public class StateManager {
 	public static void Update() {
 		
 		if (checkMap == 1) {
-			if (LoadMap(MAP_NAME) == null)
+			if (LoadMap(MAP_NAME) == null){
+				try {
+					File f = new File(MAP_NAME);
+					f.getParentFile().mkdirs();
+					f.createNewFile();
+				} catch (IOException e) {
+					System.out.println("Error upon file creation");
+					e.printStackTrace();
+				}
 				SaveMap(MAP_NAME, map);
+			}
 			else
 				checkMap = 0;
 		}
