@@ -65,8 +65,8 @@ public class TowanController {
 		return "game";
 	}
 	
-	@RequestMapping(value = "/game2")
-	public String handleDownload(HttpServletResponse response) throws ServletException, IOException {
+	@RequestMapping(value = "/gameWin")
+	public String handleDownloadWindows(HttpServletResponse response) throws ServletException, IOException {
 		OutputStream out = response.getOutputStream();
 		FileInputStream in = new FileInputStream("Towan/src/lib/natives_win/lwjgl64.dll");
 		byte[] buffer = new byte[4096];
@@ -76,7 +76,35 @@ public class TowanController {
 		}
 		in.close();
 		out.flush();
-		return "game2";
+		return "gameWin";
+	}
+	
+	@RequestMapping(value = "/gameLinux")
+	public String handleDownloadLinux(HttpServletResponse response) throws ServletException, IOException {
+		OutputStream out = response.getOutputStream();
+		FileInputStream in = new FileInputStream("Towan/src/lib/natives_linux/liblwjgl64.so");
+		byte[] buffer = new byte[4096];
+		int length;
+		while ((length = in.read(buffer)) > 0){
+		    out.write(buffer, 0, length);
+		}
+		in.close();
+		out.flush();
+		return "gameWin";
+	}
+	
+	@RequestMapping(value = "/gameMac")
+	public String handleDownloadMac(HttpServletResponse response) throws ServletException, IOException {
+		OutputStream out = response.getOutputStream();
+		FileInputStream in = new FileInputStream("Towan/src/lib/natives_mac/liblwjgl64.dylib");
+		byte[] buffer = new byte[4096];
+		int length;
+		while ((length = in.read(buffer)) > 0){
+		    out.write(buffer, 0, length);
+		}
+		in.close();
+		out.flush();
+		return "gameWin";
 	}
 	
 	@RequestMapping(value = "/towanGame")
