@@ -20,10 +20,10 @@ import at.fh.swenga.model.UserRoleModel;
 
 @Controller
 public class RegisterController {
-	
+
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private UserRoleRepository userRoleRepository;
 
@@ -31,50 +31,53 @@ public class RegisterController {
 	public String showRegister(Model model) {
 		return "register";
 	}
-	
+
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String doRegister(@Valid @ModelAttribute UserModel newUserModel, BindingResult bindingResult,
-			Model model) {
-		
-		
-		//Password encryption
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		newUserModel.setPassword(passwordEncoder.encode(newUserModel.getPassword()));
-		userRepository.save(newUserModel);
-		
-		//Create user-role for the user
-		UserRoleModel role = new UserRoleModel();
-		role.setRole("ROLE_USER");
-		role.setUser(newUserModel);
-		userRoleRepository.save(role);
-			
-		return "verifyInfo";
+	public String doRegister(@Valid @ModelAttribute UserModel newUserModel, BindingResult bindingResult, Model model) {
+
+		if (newUserModel.getPassword().length() < 14)
+			return "register2";
+		else {
+			// Password encryption
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			newUserModel.setPassword(passwordEncoder.encode(newUserModel.getPassword()));
+			userRepository.save(newUserModel);
+
+			// Create user-role for the user
+			UserRoleModel role = new UserRoleModel();
+			role.setRole("ROLE_USER");
+			role.setUser(newUserModel);
+			userRoleRepository.save(role);
+
+			return "verifyInfo";
+		}
 	}
-	
-	@GetMapping(path="/addAdmin") // Map ONLY GET Requests
-	public @ResponseBody String addAdmin () {
-		// @ResponseBody means the returned String is the response, not a view name
+
+	@GetMapping(path = "/addAdmin") // Map ONLY GET Requests
+	public @ResponseBody String addAdmin() {
+		// @ResponseBody means the returned String is the response, not a view
+		// name
 		// @RequestParam means it is a parameter from the GET or POST request
 
-		//Create admin
-		UserModel admin = new UserModel("admin","adminadminadmin","towanAdmin@towan.us");
+		// Create admin
+		UserModel admin = new UserModel("admin", "adminadminadmin", "towanAdmin@towan.us");
 		admin.setActivated(true);
 		userRepository.save(admin);
-		
-		//Create role for admin
+
+		// Create role for admin
 		UserRoleModel role = new UserRoleModel();
 		role.setRole("ROLE_ADMIN");
 		role.setUser(admin);
 		userRoleRepository.save(role);
-		
+
 		return "Saved";
 	}
-	
+
 	@RequestMapping(value = "/verify", method = RequestMethod.GET)
 	public String showVerification() {
 		return "verifyInfo";
 	}
-	
+
 	@RequestMapping(value = "/activate", method = RequestMethod.GET)
 	public String showActivate() {
 		return "activate";
