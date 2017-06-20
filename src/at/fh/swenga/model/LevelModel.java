@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -37,8 +37,8 @@ public class LevelModel {
 	
 	
 	//Relationships
-	@OneToMany
-	private List<LevelStatisticModel> level_statistics;
+	@ManyToMany
+	private List<UserModel> users;
 
 	
 	//Constructors
@@ -89,12 +89,12 @@ public class LevelModel {
 		this.wave_count = wave_count;
 	}
 
-	public List<LevelStatisticModel> getLevel_statistics() {
-		return level_statistics;
+	public List<UserModel> getLevel_statistics() {
+		return users;
 	}
 
-	public void setLevel_statistics(List<LevelStatisticModel> level_statistics) {
-		this.level_statistics = level_statistics;
+	public void setLevel_statistics(List<UserModel> users) {
+		this.users = users;
 	}
 	
 	public String getCreator() {
