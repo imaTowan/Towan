@@ -154,22 +154,17 @@
 							<img src="default-userpic.jpg" alt="userpic" class="img-responsive img-circle" style="width:800px; height:500px">
 							<div class="profile-user-title">
 								<div class="profile-user-name">
-									<form class="form-horizontal" enctype="multipart/form-data" method="post" action="profile">
-									<tbody>
-												<td th:text="${messsage}>
-									</tbody>
-									</form>
-
+									<b>Username: </b><p th:text="${currUsername}"></p>
 								</div>
 										<div class="profile-user-job">
 																	
 										</div>		
 											<div class="profile-user-menu">
 												<ul class="user-nav">
-													<li class="active"><i class="glyphicon gylphicon-time">Playtime:        ...</i></li>
-													<li class="active"><i class="glyphicon gylphicon-time">Enemies Slain:   ...</i></li>
-													<li class="active"><i class="glyphicon gylphicon-time">Towers Build:    ...</i></li>
-													<li class="active"><i class="glyphicon gylphicon-time">Waves Completed: ...</i></li>
+													<li class="active"><i class="glyphicon gylphicon-time">Playtime:      <p th:text="${playtime}"></p>  ...</i></li>
+													<li class="active"><i class="glyphicon gylphicon-time">Enemies Slain:   <p th:text="${total_enemies_slain}"></p> ...</i></li>
+													<li class="active"><i class="glyphicon gylphicon-time">Towers Build:    <p th:text="${towers_build}"></p> ...</i></li>
+													<li class="active"><i class="glyphicon gylphicon-time">Waves Completed:  <p th:text="${waves_completed}"></p> ...</i></li>
 												</ul>
 											</div>
 										</div>

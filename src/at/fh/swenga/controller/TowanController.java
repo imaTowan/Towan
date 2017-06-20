@@ -3,12 +3,14 @@ package at.fh.swenga.controller;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -17,16 +19,22 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import at.fh.swenga.dao.UserRepository;
 import at.fh.swenga.game.data.Boot;
+
+import at.fh.swenga.model.UserModel;
 
 @Controller
 public class TowanController {
+	
+	@Autowired
+	UserRepository userRepository;
 
 	@RequestMapping(value = {"/", "index"})
 	public String showWelcome(Model model) {
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		model.addAttribute("currUsername",auth.getName());
+		model.addAttribute("currUsername",auth.getName ());
 		return "index";
 	}
 	
@@ -56,8 +64,15 @@ public class TowanController {
 	
 	@RequestMapping(value = "/profile")
 	public String showProfile(Model model) {
+		UserModel user = null;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		List<UserModel> userList = userRepository.findByUsername(auth.getName());
+		user = userList.get(0);
 		model.addAttribute("currUsername",auth.getName());
+		model.addAttribute("playtime", user.getPlaytime());
+		model.addAttribute("total_enemies_slain", user.getTotal_enemies_slain());
+		model.addAttribute("towers_build",user.getTotal_towers_built());
+		model.addAttribute("waves_completed",user.getTotal_waves_completed());
 		return "profile";
 	}
 	
