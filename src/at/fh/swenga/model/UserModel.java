@@ -11,12 +11,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import at.fh.swenga.dao.UserRoleRepository;
-
-
 
 @Entity
 @Table(name = "USER")
@@ -72,8 +69,8 @@ public class UserModel implements java.io.Serializable {
 
 	
 	//Relationships
-	@OneToMany
-	private List<LevelStatisticModel> level_statistics;
+	@ManyToMany
+	private List<LevelModel> level_statistics;
 	
 	@OneToMany
 	private List<EntryModel> entries;
@@ -128,7 +125,7 @@ public class UserModel implements java.io.Serializable {
 			boolean isBlocked, boolean isHidden, boolean isActivated , int currentLevel,
 			int total_enemies_slain, int total_waves_completed, int total_towers_built, int playtime) {
 		super();
-		level_statistics = new ArrayList<LevelStatisticModel>();
+		level_statistics = new ArrayList<LevelModel>();
 		this.username = username;
 		this.password = password;
 		this.email_address = email_address;
@@ -217,11 +214,11 @@ public class UserModel implements java.io.Serializable {
 		this.isActivated = isActivated;
 	}
 
-	public List<LevelStatisticModel> getLevel_statistics() {
+	public List<LevelModel> getLevel_statistics() {
 		return level_statistics;
 	}
 
-	public void setLevel_statistics(List<LevelStatisticModel> level_statistics) {
+	public void setLevel_statistics(List<LevelModel> level_statistics) {
 		this.level_statistics = level_statistics;
 	}
 
