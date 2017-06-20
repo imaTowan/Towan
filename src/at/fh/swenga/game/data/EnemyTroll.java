@@ -6,7 +6,7 @@ public class EnemyTroll extends Enemy {
 		super(tileX, tileY, grid);
 		this.setTexture("enemyTroll");
 		this.setSpeed(100);
-		this.setHealth(10);
+		this.setHealth(5);
 		this.setScorePoints(10);
 		this.setEnemyGold(5);
 	}

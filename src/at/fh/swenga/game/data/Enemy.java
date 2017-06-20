@@ -25,19 +25,23 @@ public class Enemy implements Entity {
 		this.width = TILE_SIZE;
 		this.height = TILE_SIZE;
 		this.speed = 40;
-		this.health = 10;
+		this.health = 5;
+		this.scorePoints = 10;
+		this.enemyGold = 10;
 		setupEnemy(grid);
 		populateCheckpointList();
 	}
 	
 	//Enhanced constructor
-	public Enemy(Texture texture, Tile startTile, Grid grid, int width, int height, float speed, float health){
+	public Enemy(Texture texture, Tile startTile, Grid grid, int width, int height, float speed, float health, int scorePoints, int enemyGold){
 		this.texture = texture;
 		this.startTile = startTile;
 		this.width = width;
 		this.height = height;
 		this.speed = speed;
 		this.health = health;
+		this.scorePoints = scorePoints;
+		this.enemyGold = enemyGold;
 		setupEnemy(grid);
 		populateCheckpointList();
 	}
@@ -59,8 +63,6 @@ public class Enemy implements Entity {
 		this.directions[1] = 0; // Y direction
 		this.directions = findNextD(startTile);
 		this.currentCheckpoint = 0;
-		this.scorePoints = 10;
-		this.enemyGold = 10;
 	}
 	
 	public void update(){
@@ -282,8 +284,16 @@ public class Enemy implements Entity {
 		return alive;
 	}
 	
+	public int getScorePoints(){
+		return scorePoints;
+	}
+	
 	public void setScorePoints(int scorePoints){
 		this.scorePoints = scorePoints;
+	}
+	
+	public int getEnemyGold(){
+		return enemyGold;
 	}
 	
 	public void setEnemyGold(int enemyGold){
