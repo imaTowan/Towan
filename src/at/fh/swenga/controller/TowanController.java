@@ -55,7 +55,9 @@ public class TowanController {
 	}
 	
 	@RequestMapping(value = "/profile")
-	public String showProfile() {
+	public String showProfile(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		model.addAttribute("currUsername",auth.getName());
 		return "profile";
 	}
 	
