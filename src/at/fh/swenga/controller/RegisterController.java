@@ -35,6 +35,11 @@ public class RegisterController {
 			Model model) {
 		
 		
+		
+		if (newUserModel.getPassword().length() <14)
+			return "register2";
+		else {
+		
 		//Password encryption
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		newUserModel.setPassword(passwordEncoder.encode(newUserModel.getPassword()));
@@ -47,7 +52,9 @@ public class RegisterController {
 		userRoleRepository.save(role);
 			
 		return "verifyInfo";
+		}
 	}
+	
 	
 	@RequestMapping(value = "/verify", method = RequestMethod.GET)
 	public String showVerification() {
