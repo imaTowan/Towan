@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import at.fh.swenga.dao.UserRoleRepository;
+
 
 
 @Entity
@@ -79,7 +81,7 @@ public class UserModel {
 	@OneToMany
 	private List<ReportModel> reports;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
 	private Set<UserRoleModel> userRole = new HashSet<UserRoleModel>(0);
 	
 	
@@ -102,6 +104,9 @@ public class UserModel {
 		this.total_waves_completed = 0;
 		this.total_towers_built = 0;
 		this.playtime = 0;
+		
+
+		
 	}
 	
 	public UserModel(String username, String password, String email_address, boolean isBlocked, boolean isHidden, boolean isActivated, int currentLevel,

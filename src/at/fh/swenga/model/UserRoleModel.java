@@ -30,8 +30,8 @@ public class UserRoleModel implements java.io.Serializable {
 		this.userRoleId = userRoleId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "username", nullable = false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "userId", nullable = false)
 	public UserModel getUser() {
 		return user;
 	}

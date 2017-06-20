@@ -6,10 +6,20 @@
 
 	<http>
 		<csrf />
-		<intercept-url pattern="/secured/**" access="hasRole('USER')"/>
-		<intercept-url pattern="/Game" access="hasRole('USER')"/>
+		<intercept-url pattern="/secured/**" access="hasRole('ROLE_USER')"/>
+		
+		<!-- 
+		
+		<intercept-url pattern="/game" access="hasRole('ROLE_USER')"/>
+		<intercept-url pattern="/home" access="hasRole('ROLE_USER')"/>
+		<intercept-url pattern="/profile" access="hasRole('ROLE_USER')"/>
+		<intercept-url pattern="/forum" access="hasRole('ROLE_USER')"/>
+		<intercept-url pattern="/settings" access="hasRole('ROLE_USER')"/>
+		
+		 -->
+		 
 		<intercept-url pattern="/**" access="permitAll"/>
-		<form-login login-page="/login" />
+		<form-login login-page="/login" default-target-url="/home"/>
 		<logout logout-success-url="/index" logout-url="/logout" />
 	</http>
 
