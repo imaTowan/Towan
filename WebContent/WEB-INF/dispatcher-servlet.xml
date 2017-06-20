@@ -123,7 +123,7 @@
 	</bean>
 
 	<bean id="customMailMessage" class="org.springframework.mail.SimpleMailMessage">
-		<property name="from" value="ima@fh.com" />
+		<property name="from" value="imaTowan@gmail.com" />
 		<property name="to" value="ChangeThis@fh.com" />
 		<property name="subject" value="Testing Subject" />
 		<property name="text">

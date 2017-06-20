@@ -104,9 +104,6 @@ public class UserModel implements java.io.Serializable {
 		this.total_waves_completed = 0;
 		this.total_towers_built = 0;
 		this.playtime = 0;
-		
-
-		
 	}
 	
 	public UserModel(String username, String password, String email_address, boolean isBlocked, boolean isHidden, boolean isActivated, int currentLevel,

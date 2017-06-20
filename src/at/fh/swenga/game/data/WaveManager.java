@@ -26,6 +26,8 @@ public class WaveManager {
 	}
 	
 	private void newWave() {
+		if (waveNumber > 0)
+			Player.ModifyWavesCompleted();
 		if (waveNumber > 1)
 			for (Enemy e: enemyTypes)
 				e.setHealth((int) Math.floor((e.getHealth() * waveNumber * 0.6) / Balancing + 10));

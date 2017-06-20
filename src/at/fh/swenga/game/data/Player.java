@@ -18,7 +18,8 @@ public class Player {
 	private ArrayList<Tower> towerList;
 	private boolean leftMouseButtonDown, rightMouseButtonDown, holdingTower;
 	private Tower tempTower;
-	public static int Gold, Lives, Score, HighScore;
+	public static int Gold, Lives, Score, HighScore, Enemies_slain, Waves_completed, Towers_built;
+	public static boolean GameOver = false;
 	
 	public Player(Grid grid, WaveManager waveManager){
 		this.grid = grid;
@@ -33,7 +34,7 @@ public class Player {
 		this.holdingTower = false;
 		this.tempTower = null;
 		Gold = 0;
-		Lives = 0;
+		Lives = 10;
 		Score = 0;
 		HighScore = LoadScore(HIGHSCORE_FILENAME);
 	}
@@ -55,10 +56,24 @@ public class Player {
 	
 	public static void ModifyLives(int amount) {
 		Lives += amount;
+		if (Lives <= 0)
+			GameOver = true;
 	}
 	
 	public static void ModifyScore(int amount) {
 		Score += amount;
+	}
+	
+	public static void ModifyEnemiesSlain() {
+		Enemies_slain++;
+	}
+	
+	public static void ModifyWavesCompleted() {
+		Waves_completed++;
+	}
+	
+	public static void ModifyTowersBuilt() {
+		Towers_built++;
 	}
 	
 	public void update() {
@@ -106,6 +121,7 @@ public class Player {
 				currentTile.setOccupied(true);
 				holdingTower = false;
 				tempTower = null;
+				ModifyTowersBuilt();
 			}
 	}
 	
