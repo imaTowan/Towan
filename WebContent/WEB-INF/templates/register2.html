@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<title>Register page</title>
+<div th:replace="~{includes/bootstrapMeta :: bootstrapMeta}" />
+<div th:replace="~{includes/bootstrapCSS :: bootstrapCSS}" />
+
+<style>
+.buttonStyle {
+	background-color: #000000;
+	color: #ffffff;
+	font-family: "Calibri";
+	font-size: 20px;
+	height: 40px;
+	width: 200px;
+	margin-top: 5mm;
+	margin-left: 20%;
+}
+
+.buttonStyle2 {
+	background-color: #AAAAAA;
+	color: #ffffff;
+	font-family: "Calibri";
+	font-size: 20px;
+	height: 40px;
+	width: 100px;
+	margin-top: 5mm;
+	margin-left: 60%;
+}
+
+.buttonStyle:hover {
+	background-color: #ffffff;
+	color: #000000;
+	border: 5px solid black;
+}
+
+.well {
+	padding: 10px 0px 10px 0px;
+}
+</style>
+
+</head>
+<body>
+	<div class="container" role="main">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<form class="form-horizontal" method="post"
+					th:action="${user} ? @{register}">
+					<fieldset>
+						<div class="well form-group">
+							<p>Email address:</p>
+							<input id="inputEmail" type="text" name="email_address"
+								class="form-control" placeholder="john.doe@gmail.com" required
+								autofocus th:value="${user} ? ${user.email_address}">
+							<p></p>
+							<p>Username:</p>
+							<input id="inputUsername" type="text" name="username"
+								class="form-control" placeholder="User" required autofocus
+								th:value="${user} ? ${user.username}">
+							<p></p>
+							<p>Password:</p>
+							<input id="inputPassword" type="password" name="password"
+								class="form-control" placeholder="Password" required
+								th:value="${user} ? ${user.password}">
+							<p></p>
+							<p>"Password has to be at least 14 characters long!"</p>
+							<div class="form-group">
+								<div class="col-md-10 col-md-offset-2">
+									<button type="submit" class="btn btn-primary">Submit</button>
+									<a href="index">
+										<button type="button" class="btn btn-default">Cancel</button>
+									</a>
+								</div>
+							</div>
+						</div>
+
+						<!--  			    __                   __
+                   | _'-._           _.-'_ |
+                   | '::. '.       .' .::' |
+                    \ '::\  \     /  /::' /
+                     \  ':\  |   |  /:'  /
+                      '._ `  '---'  ` _.'
+                         ) __     __ (
+                        / /  \   /  \ \
+                       /  \_0/   \0_/  \
+                     =/       .-.       \=
+                    =| .'     \_/     '. |=
+                     =\ '      |      ' /=
+     {}._              '.__ `--'--` __.'
+    {}{}-'=._         /`   \_______/   `\
+   >{}={}_-=_`=.,==,=|     /==,==,=\     |.,_
+  {}~-{}~{}"-=-/  /  /\,,,/  /  /   \,,,//  /`"=._
+ {}<{}-{}-_=-";  ;  _; _ ;  ;  ;  ;  ; _; _:   /  /`;=,__,
+{}{}={}->"-_~-;  |_/ \| \|  |  |  |  |/ |/ \_ ;  :  ; _,='
+ {}{}"<{}{_==";  / \()()|;  ;  ;  ;  ;|()()/ \ \ _;="`
+   {}{}{}>=-_.=\ \() _  | \  \  \  \  |    ()/="`
+    {}jgs{}-`   `=\ / `\|==`==`==`==`=|/` \ /
+     {}{}          \\  ||             ||  //
+                    \'-'/             \'-'/
+                     `"`               `"`
+					
+-->
+
+						<input type="hidden" th:name="${_csrf.parameterName}"
+							th:value="${_csrf.token}">
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
