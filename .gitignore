@@ -21,4 +21,4 @@ project/plugins/project/
 RemoteSystemTempFiles/
 
 #misc
-db.properties
+src/db.properties
