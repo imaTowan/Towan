@@ -6,8 +6,8 @@ public class EnemyOgre extends Enemy{
 		super(tileX, tileY, grid);
 		this.setTexture("enemyOgre");
 		this.setSpeed(50);
-		this.setHealth(30);
+		this.setHealth(15);
 		this.setScorePoints(50);
-		this.setEnemyGold(10);
+		this.setEnemyGold(15);
 	}
 }

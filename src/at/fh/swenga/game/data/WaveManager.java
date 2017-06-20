@@ -7,6 +7,8 @@ public class WaveManager {
 	private Enemy[] enemyTypes;
 	private Wave currentWave;
 	
+	private static int Balancing = 5;
+	
 	public WaveManager(Enemy[] enemyTypes, float timeBetweenEnemies, int enemiesPerWave) {
 		this.enemyTypes = enemyTypes;
 		this.timeBetweenEnemies = timeBetweenEnemies;
@@ -26,7 +28,7 @@ public class WaveManager {
 	private void newWave() {
 		if (waveNumber > 1)
 			for (Enemy e: enemyTypes)
-				e.setHealth((int) Math.floor(e.getHealth() * waveNumber / 2));
+				e.setHealth((int) Math.floor((e.getHealth() * waveNumber * 0.6) / Balancing + 10));
 		currentWave = new Wave(enemyTypes, timeBetweenEnemies, enemiesPerWave);
 		waveNumber++;
 	}

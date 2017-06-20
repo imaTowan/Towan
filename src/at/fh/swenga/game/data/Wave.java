@@ -55,7 +55,7 @@ public class Wave {
 		Random random = new Random(); 
 		enemyChosen = random.nextInt(enemyTypes.length);
 		
-		enemyList.add(new Enemy(enemyTypes[enemyChosen].getTexture(), enemyTypes[enemyChosen].getStartTile(), enemyTypes[enemyChosen].getGrid(), TILE_SIZE, TILE_SIZE, enemyTypes[enemyChosen].getSpeed(), enemyTypes[enemyChosen].getHealth()));
+		enemyList.add(new Enemy(enemyTypes[enemyChosen].getTexture(), enemyTypes[enemyChosen].getStartTile(), enemyTypes[enemyChosen].getGrid(), TILE_SIZE, TILE_SIZE, enemyTypes[enemyChosen].getSpeed(), enemyTypes[enemyChosen].getHealth(), enemyTypes[enemyChosen].getScorePoints(), enemyTypes[enemyChosen].getEnemyGold()));
 		enemiesSpawned++;
 	}
 

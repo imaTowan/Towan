@@ -6,8 +6,8 @@ public class EnemyDragon extends Enemy{
 		super(tileX, tileY, grid);
 		this.setTexture("enemyDragon");
 		this.setSpeed(60);
-		this.setHealth(50);
+		this.setHealth(30);
 		this.setScorePoints(100);
-		this.setEnemyGold(20);
+		this.setEnemyGold(25);
 	}
 }
