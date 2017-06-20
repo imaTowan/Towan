@@ -22,14 +22,14 @@ public class ForumModel {
 	@Id
 	@Column(name = "forum_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int forum_id;
+	private int forumId;
 	
 	@Column(nullable = false, length = 30)
 	private String name;
 	
 	
 	//Relationships
-	@OneToMany(fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="forum", fetch=FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	private List<SubforumModel> subforums;
 
@@ -45,12 +45,12 @@ public class ForumModel {
 
 	
 	//Getter & Setter
-	public int getForum_id() {
-		return forum_id;
+	public int getForumId() {
+		return forumId;
 	}
 
-	public void setForum_id(int forum_id) {
-		this.forum_id = forum_id;
+	public void setForumId(int forumId) {
+		this.forumId = forumId;
 	}
 
 	public String getName() {
@@ -75,7 +75,7 @@ public class ForumModel {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + forum_id;
+		result = prime * result + forumId;
 		return result;
 	}
 
@@ -88,7 +88,7 @@ public class ForumModel {
 		if (getClass() != obj.getClass())
 			return false;
 		ForumModel other = (ForumModel) obj;
-		if (forum_id != other.forum_id)
+		if (forumId != other.forumId)
 			return false;
 		return true;
 	}
