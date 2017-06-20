@@ -3,6 +3,8 @@ package at.fh.swenga.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +28,12 @@ public class RegisterController {
 
 	@Autowired
 	private UserRoleRepository userRoleRepository;
+	
+	@Autowired
+	private MailSender mailSender;
+	
+	@Autowired
+	private SimpleMailMessage customMailMessage;
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String showRegister(Model model) {
@@ -48,6 +56,12 @@ public class RegisterController {
 			role.setRole("ROLE_USER");
 			role.setUser(newUserModel);
 			userRoleRepository.save(role);
+			
+			//Send verification mail
+			SimpleMailMessage msg = new SimpleMailMessage(this.customMailMessage);
+			msg.setTo(newUserModel.getEmail_address());
+			msg.setText(String.format(msg.getText(), newUserModel.getUsername(), "<VALIDATIONURL>"));
+			this.mailSender.send(msg);
 
 			return "verifyInfo";
 		}
