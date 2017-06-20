@@ -18,7 +18,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "USER")
-public class UserModel {
+public class UserModel implements java.io.Serializable {
 
 	// Attributes
 	@GeneratedValue(strategy = GenerationType.AUTO)
