@@ -123,9 +123,8 @@
 	</bean>
 
 	<bean id="customMailMessage" class="org.springframework.mail.SimpleMailMessage">
-		<property name="from" value="ima@fh.com" />
-		<property name="to" value="ChangeThis@fh.com" />
-		<property name="subject" value="Testing Subject" />
+		<property name="from" value="mail@towan.us" />
+		<property name="subject" value="Towan Verification" />
 		<property name="text">
 			<value>
 <![CDATA[Dear %s,

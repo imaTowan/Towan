@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import at.fh.swenga.dao.UserRepository;
@@ -34,6 +35,8 @@ public class RegisterController {
 	
 	@Autowired
 	private SimpleMailMessage customMailMessage;
+	
+	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String showRegister(Model model) {
@@ -47,7 +50,7 @@ public class RegisterController {
 			return "register2";
 		else {
 			// Password encryption
-			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			
 			newUserModel.setPassword(passwordEncoder.encode(newUserModel.getPassword()));
 			userRepository.save(newUserModel);
 
@@ -60,21 +63,21 @@ public class RegisterController {
 			//Send verification mail
 			SimpleMailMessage msg = new SimpleMailMessage(this.customMailMessage);
 			msg.setTo(newUserModel.getEmail_address());
-			msg.setText(String.format(msg.getText(), newUserModel.getUsername(), "<VALIDATIONURL>"));
+			msg.setText(String.format(msg.getText(), newUserModel.getUsername(), "http://localhost:8080/Towan/verification?id="+newUserModel.getUserId()));
 			this.mailSender.send(msg);
 
 			return "verifyInfo";
 		}
 	}
 
-	@GetMapping(path = "/addAdmin") // Map ONLY GET Requests
+	@RequestMapping(path = "/addAdmin", method = RequestMethod.GET) // Map ONLY GET Requests
 	public @ResponseBody String addAdmin() {
 		// @ResponseBody means the returned String is the response, not a view
 		// name
 		// @RequestParam means it is a parameter from the GET or POST request
 
 		// Create admin
-		UserModel admin = new UserModel("admin", "adminadminadmin", "towanAdmin@towan.us");
+		UserModel admin = new UserModel("admin", passwordEncoder.encode("adminadminadmin"), "towanAdmin@towan.us");
 		admin.setActivated(true);
 		userRepository.save(admin);
 
@@ -90,6 +93,14 @@ public class RegisterController {
 	@RequestMapping(value = "/verify", method = RequestMethod.GET)
 	public String showVerification() {
 		return "verifyInfo";
+	}
+	
+	@RequestMapping("/verification")
+	public String doVerification(@RequestParam String id) {
+		
+		userRepository.setUserActivated(Long.parseLong(id));
+		
+		return "login";
 	}
 
 	@RequestMapping(value = "/activate", method = RequestMethod.GET)
