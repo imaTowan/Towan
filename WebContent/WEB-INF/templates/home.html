@@ -34,6 +34,58 @@ h1 {
 	font-family: "Algerian";
 	font-size: 32px;
 }
+
+h2 {
+	font-family: "Algerian";
+	font-size: 32px;
+	padding-left: 50%;
+}
+.container{
+		width: 100%;
+		margin: 0;
+		padding-left: 30%;
+		padding-right: 20%;
+	}
+	
+
+	#footer {
+		margin-top: 8%;
+	    margin-left: 18%;
+	    height:0%;   /* Height of the footer */
+	    width: 70%;
+	}
+	
+	table {
+		color: #333;
+	    font-family: Helvetica, Arial, sans-serif;
+	    width: 80%;
+	    border-collapse: collapse; 
+	    border-spacing: 0; 
+	    margin-left: -25%;
+	}
+	td, th {  
+	    border: 1px solid transparent; 
+	    height: 30px;
+	    transition: all 0.3s;  
+	}
+	
+	th {
+		background: #DFDFDF; 
+    	font-weight: bold;
+    	width: 80%;
+    	min-width: 150px;
+
+}
+
+	td {  
+	    background: #FAFAFA;
+	    text-align: center;
+	    width: 80%;
+	    min-width: 150px;
+	}
+	
+	
+
 </style>
 
 
@@ -51,13 +103,43 @@ h1 {
 		</div>
 	</div>
 	<br />
-	<div class="row text-center">
+	<div class="row">
 
-		<h1>
+		<h2>
 			<b>Home</b>
-		</h1>
+		</h2>
+
+	<div class="container">
+	
+		<p> 
+
+		</br>Welcome to Towan.us <b th:text="${currUsername}" ></b>! This gaming website is a students project that was created with love and devotion! </br>
+		We hope you will have a lot of fun playing our game and being a part of our great gaming community.</br></br>
+		<ul>
+			<li>How many towers will YOU build?</li>
+			<li>How many enemies will YOU slay?</li>
+			<li>How many waves will YOU survive?</li>
+		</ul>
+		</br>
+		Try to improve and try to give your best. Every wave will be more challenging so be prepared. We are sure you will become better every single time
+		and do not hesitate to compare yourself and to compete with other users. </br>
+		</br>
+		We wish you tons of fun because we had fun creating this project for sure ;-) 
+		</br>
+		All the best!
+		</br>
+		</t>Your TOWAN.US Team
+		</p>
+		</br>
+
 
 	</div>
-	<a href="impressum">About</a>
+		<div id=footer>
+			<a href="logout">Logout</a></br>
+			<a href="impressum">About</a>
+		</div>
+	</div>
+
+
 </body>
 </html>
