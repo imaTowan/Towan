@@ -81,8 +81,6 @@ public class TowanController {
 		return "profile";
 	}
 	
-	
-	
 	@RequestMapping(value = "/game", method = RequestMethod.GET)
 	public String showGame() {
 		return "game";
