@@ -5,7 +5,7 @@
 	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
 	<http>
-		<csrf />
+			<csrf disabled="true" />
 		<intercept-url pattern="/secured/**" access="hasRole('ROLE_USER')"/>
 		
 		<!-- 
@@ -21,6 +21,7 @@
 		<intercept-url pattern="/**" access="permitAll"/>
 		<form-login login-page="/login" default-target-url="/home"/>
 		<logout logout-success-url="/index" logout-url="/logout" />
+
 	</http>
 
 	<authentication-manager>
@@ -28,4 +29,6 @@
 			<password-encoder hash="bcrypt" />
 		</authentication-provider>
 	</authentication-manager>
+	
+
 </b:beans>

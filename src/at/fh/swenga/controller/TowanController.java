@@ -4,20 +4,16 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import at.fh.swenga.dao.UserRepository;
 import at.fh.swenga.game.data.Boot;
@@ -89,9 +85,27 @@ public class TowanController {
 		Player.Waves_completed = 0;
 		Player.Towers_built = 0;
 		Player.Playtime = 0;
-
+		
 		return "profile";
 	}
+		
+		// Find User
+		@RequestMapping(value = "/searchUsers")
+		public String searchUsername(Model model, @RequestParam String searchString) {
+			UserModel allUsers = null;
+			List<UserModel> userFindList = userRepository.findByUsername(searchString);
+			allUsers = userFindList.get(0);
+			System.out.println(allUsers);
+
+			model.addAttribute("currUsername", allUsers.getUsername());
+			model.addAttribute("playtime", allUsers.getPlaytime());
+			model.addAttribute("total_enemies_slain", allUsers.getTotal_enemies_slain());
+			model.addAttribute("towers_build", allUsers.getTotal_towers_built());
+			model.addAttribute("waves_completed", allUsers.getTotal_waves_completed());
+
+		return "profile";
+			
+		}
 
 	@RequestMapping(value = "/game", method = RequestMethod.GET)
 	public String showGame() {
