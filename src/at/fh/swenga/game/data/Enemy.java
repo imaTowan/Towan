@@ -182,6 +182,7 @@ public class Enemy implements Entity {
 		alive = false;
 		Player.ModifyScore(scorePoints);
 		Player.ModifyGold(enemyGold);
+		Player.ModifyEnemiesSlain();
 	}
 	
 	public void draw(){

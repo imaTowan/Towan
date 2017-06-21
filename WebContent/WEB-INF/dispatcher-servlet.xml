@@ -111,8 +111,8 @@
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.mailtrap.io" />
 		<property name="port" value="2525" />
-		<property name="username" value="1ffe7a32bcd981" />
-		<property name="password" value="77951975b48d5a" />
+		<property name="username" value="b891cb5054b82f" />
+		<property name="password" value="05fe976ff78174" />
  
 		<property name="javaMailProperties">
 			<props>
@@ -128,16 +128,13 @@
 		<property name="subject" value="Testing Subject" />
 		<property name="text">
 			<value>
-		<![CDATA[Dear %s,
+<![CDATA[Dear %s,
  
-Mail Content: 
+Follow this link to verify your Account:
 %s
 
-Follow this link to verify your Account:
-<insert link to www.towan.us/user_id_hash/activate here>
-
 Kind Regards
-Team Towan
+Team Towan.us
 		]]>
 			</value>
 		</property>

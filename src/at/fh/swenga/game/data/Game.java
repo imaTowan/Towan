@@ -19,7 +19,7 @@ public class Game {
 	private UI gameUI;
 	private Menu towerPickerMenu;
 	private Texture menuBackground;
-	private Enemy[] enemyTypes;
+	private Enemy[] enemyTypes; 
 	
 	public Game(Grid grid) {
 		this.grid = grid;
@@ -73,6 +73,15 @@ public class Game {
 	}
 	
 	public void update() {
+		if (Player.Lives == 0 && Player.GameOver == true){
+			//UPDATE DB
+			int new_enemies_slain = Player.Enemies_slain;
+			int new_waves_completed = Player.Waves_completed;
+			int new_towers_built = Player.Towers_built;
+			int new_playtime = 1;
+			UpdateDB(new_enemies_slain, new_waves_completed, new_towers_built, new_playtime);
+			Player.GameOver = false;
+		}
 		if (Player.Lives > 0) {
 			DrawQuadTex(menuBackground, WIDTH, 0, MENU_WIDTH, HEIGHT);
 			grid.draw();
@@ -85,4 +94,17 @@ public class Game {
 			StateManager.setState(GameState.MAINMENU);
 		}
 	}	
+	
+	public void UpdateDB(int new_enemies_slain, int new_waves_completed, int new_towers_built, int new_playtime){
+		// GET DATA FROM DB
+		String sql="SELECT total_enemies_slain,total_waves_completed,total_towers_built,playtime FROM user WHERE user.id='user_id'";
+		
+		
+		
+		// UPDATE DATA
+		
+		
+		// WRITE NEW DATA TO DB
+		
+	}
 }

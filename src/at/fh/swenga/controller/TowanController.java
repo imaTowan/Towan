@@ -16,11 +16,16 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import at.fh.swenga.dao.UserRepository;
 import at.fh.swenga.game.data.Boot;
+import at.fh.swenga.model.UserModel;
+import at.fh.swenga.model.UserRoleModel;
 
 import at.fh.swenga.model.UserModel;
 
@@ -64,6 +69,7 @@ public class TowanController {
 	
 	@RequestMapping(value = "/profile")
 	public String showProfile(Model model) {
+<<<<<<< HEAD
 		UserModel user = null;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		List<UserModel> userList = userRepository.findByUsername(auth.getName());
@@ -73,6 +79,10 @@ public class TowanController {
 		model.addAttribute("total_enemies_slain", user.getTotal_enemies_slain());
 		model.addAttribute("towers_build",user.getTotal_towers_built());
 		model.addAttribute("waves_completed",user.getTotal_waves_completed());
+=======
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		model.addAttribute("currUsername",auth.getName());
+>>>>>>> 2538c3c3836ea361482a74bbe80c4d9b2ffa8ed5
 		return "profile";
 	}
 	
@@ -81,52 +91,9 @@ public class TowanController {
 		return "game";
 	}
 	
-	@RequestMapping(value = "/gameWin")
-	public String handleDownloadWindows(HttpServletResponse response) throws ServletException, IOException {
-		OutputStream out = response.getOutputStream();
-		FileInputStream in = new FileInputStream("Towan/src/lib/natives_win/lwjgl64.dll");
-		byte[] buffer = new byte[4096];
-		int length;
-		while ((length = in.read(buffer)) > 0){
-		    out.write(buffer, 0, length);
-		}
-		in.close();
-		out.flush();
-		return "gameWin";
-	}
-	
-	@RequestMapping(value = "/gameLinux")
-	public String handleDownloadLinux(HttpServletResponse response) throws ServletException, IOException {
-		OutputStream out = response.getOutputStream();
-		FileInputStream in = new FileInputStream("Towan/src/lib/natives_linux/liblwjgl64.so");
-		byte[] buffer = new byte[4096];
-		int length;
-		while ((length = in.read(buffer)) > 0){
-		    out.write(buffer, 0, length);
-		}
-		in.close();
-		out.flush();
-		return "gameWin";
-	}
-	
-	@RequestMapping(value = "/gameMac")
-	public String handleDownloadMac(HttpServletResponse response) throws ServletException, IOException {
-		OutputStream out = response.getOutputStream();
-		FileInputStream in = new FileInputStream("Towan/src/lib/natives_mac/liblwjgl64.dylib");
-		byte[] buffer = new byte[4096];
-		int length;
-		while ((length = in.read(buffer)) > 0){
-		    out.write(buffer, 0, length);
-		}
-		in.close();
-		out.flush();
-		return "gameWin";
-	}
-	
 	@RequestMapping(value = "/towanGame")
 	public String startGame() {
-		Boot game = new Boot();
-		game = null;
+		new Boot();
 		return "towanGame";
 	}
 	
@@ -147,7 +114,6 @@ public class TowanController {
 	
 	@ExceptionHandler(Exception.class)
 	public String handleAllException(Exception ex) {
-		System.out.println("but an error occured.");
 		ex.printStackTrace();
 		return "error";
 	}

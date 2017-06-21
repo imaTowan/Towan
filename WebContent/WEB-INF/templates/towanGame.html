@@ -7,33 +7,29 @@
 <div th:replace="~{includes/bootstrapCSS :: bootstrapCSS}" />
 
 <style>
-	.navBtn
-	{
-		background-color: #cccccc;
-		border: 2px solid #bbbbbb;	
-		color: black;
-		font-style: bold;
-		font-size: 20px;
-		font-family: Calibri;
-	}
-	
-	.navBtn:hover
-	{
-		background-color: #bbbbbb;
-	}
-	
-	.jumbotron
-	{
-		margin-bottom: 0px;
-	}
-	
-	.row
-	{
-		width: 100%;
-		margin: 0px;
-		padding: 0px;
-	}
-	
+.navBtn {
+	background-color: #cccccc;
+	border: 2px solid #bbbbbb;
+	color: black;
+	font-style: bold;
+	font-size: 20px;
+	font-family: Calibri;
+}
+
+.navBtn:hover {
+	background-color: #bbbbbb;
+}
+
+.jumbotron {
+	margin-bottom: 0px;
+}
+
+.row {
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
 .buttonStyle {
 	background-color: #000000;
 	color: #ffffff;
@@ -49,34 +45,35 @@
 	color: #000000;
 	border: 5px solid black;
 }
+
 ​
-	
+h5 {
+	font-family: "Algerian";
+	font-size: 32px;
+}
 </style>
 
 
 
 </head>
 <body>
-	<div class="jumbotron text-center">
-		<h1>Towan</h1>
+	<div style="background: url('HeaderWall.png')" class="jumbotron text-center">
+		<h5>Towan</h5>
 	</div>
 	<div class="row">
 		<div class="btn-group-justified">
-		  <a href="home" class="btn navBtn">Home</a>
-		  <a href="profile" class="btn navBtn">Profile</a>
-		  <a href="forum" class="btn navBtn">Forum</a>
-		  <a href="settings" class="btn navBtn">Settings</a>
+			<a href="home" class="btn navBtn">Home</a> <a href="profile"
+				class="btn navBtn">Profile</a> <a href="forum" class="btn navBtn">Forum</a>
+			<a href="settings" class="btn navBtn">Settings</a>
 		</div>
-		
-			</div>
+
+	</div>
 	</br>
 	<div class="row text-center">
-		
+
 		<h1>Start your game here!</h1>
-		<img src="ExamplePicture.jpg" alt="example" style="width:500px;height:350px;">
-	</br>
-	<a href="towanGame" class="btn">Game Start!</a>
-
-
+		<img src="ExamplePicture.jpg" alt="example"
+			style="width: 500px; height: 350px;"> </br> <a href="towanGame"
+			class="btn">Game Start!</a>
 </body>
 </html>

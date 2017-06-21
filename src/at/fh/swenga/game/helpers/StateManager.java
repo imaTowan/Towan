@@ -106,4 +106,8 @@ public class StateManager {
 	public static void setState(GameState newState) {
 		gameState = newState;
 	}
+	
+	public static void setGameToNull(){
+		game = null;
+	}
 }
