@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-<title>Register page</title>
+<title>Change username page</title>
 <div th:replace="~{includes/bootstrapMeta :: bootstrapMeta}" />
 <div th:replace="~{includes/bootstrapCSS :: bootstrapCSS}" />
 
@@ -48,31 +48,14 @@
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 				<form class="form-horizontal" method="post"
-					th:action="${user} ? @{register}">
+					th:action="${user} ? @{changeUsername}">
 					<fieldset>
 						<div class="well form-group">
-							<p>Email address:</p>
-							<input id="inputEmail" type="text" name="email_address"
-								class="form-control" placeholder="john.doe@gmail.com" required
-								autofocus th:value="${user} ? ${user.email_address}">
-							<p></p>
-							<p>Username:</p>
+							<p>New Username:</p>
 							<input id="inputUsername" type="text" name="username"
-								class="form-control" placeholder="User" required autofocus
+								class="form-control" placeholder="Enter new username..." required autofocus
 								th:value="${user} ? ${user.username}">
 							<p></p>
-							<p>Password:</p>
-							<input id="inputPassword" type="password" name="password"
-								class="form-control" placeholder="Password" required
-								th:value="${user} ? ${user.password}">
-							<p></p>
-							<p>"Password has to be at least 14 characters long!"</p>
-					<!--    
-							<p>Confirm Password:</p>
-							<input id="inputPassword2" type="password" name="password2"
-								class="form-control" placeholder="Password" required >
-							<p></p> 
-					-->
 							<div class="form-group">
 								<div class="col-md-10 col-md-offset-2">
 									<button type="submit" class="btn btn-primary">Submit</button>

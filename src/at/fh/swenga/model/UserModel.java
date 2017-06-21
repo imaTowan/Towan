@@ -50,9 +50,6 @@ public class UserModel implements java.io.Serializable {
 	private boolean isActivated;
 	
 	@Column(nullable = false)
-	private int current_level;
-	
-	@Column(nullable = false)
 	private int total_enemies_slain;
 	
 	@Column(nullable = false)
@@ -96,7 +93,6 @@ public class UserModel implements java.io.Serializable {
 		this.isBlocked = false;
 		this.isHidden = false;
 		this.isActivated = false;
-		this.current_level = 0;
 		this.total_enemies_slain = 0;
 		this.total_waves_completed = 0;
 		this.total_towers_built = 0;
@@ -114,7 +110,6 @@ public class UserModel implements java.io.Serializable {
 		this.isBlocked = isBlocked;
 		this.isHidden = isHidden;
 		this.isActivated = isActivated;
-		this.current_level = currentLevel;
 		this.total_enemies_slain = total_enemies_slain;
 		this.total_waves_completed = total_waves_completed;
 		this.total_towers_built = total_towers_built;
@@ -236,14 +231,6 @@ public class UserModel implements java.io.Serializable {
 
 	public void setReports(List<ReportModel> reports) {
 		this.reports = reports;
-	}
-	
-	public int getCurrentLevel() {
-		return current_level;
-	}
-	
-	public void setCurrentLevel(int current_level) {
-		this.current_level = current_level;
 	}
 	
 	public int getTotal_enemies_slain() {

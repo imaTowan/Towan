@@ -1,12 +1,17 @@
 package at.fh.swenga.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,8 +54,8 @@ public class RegisterController {
 		if (newUserModel.getPassword().length() < 14)
 			return "register2";
 		else {
-			// Password encryption
 			
+			// Password encryption
 			newUserModel.setPassword(passwordEncoder.encode(newUserModel.getPassword()));
 			userRepository.save(newUserModel);
 
@@ -106,5 +111,82 @@ public class RegisterController {
 	@RequestMapping(value = "/activate", method = RequestMethod.GET)
 	public String showActivate() {
 		return "activate";
+	}
+	
+	@RequestMapping(value = "/changeUsername")
+	public String showChangeUsername() {
+		return "changeUsername";
+	}
+
+	@Transactional
+	@RequestMapping(value = "/changeUsername", method = RequestMethod.POST)
+	public String doChangeUsername(@Valid @ModelAttribute UserModel newUserModel, BindingResult bindingResult, Model model) {
+
+		// Get user from DB
+		UserModel user = null;
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		List<UserModel> userList = userRepository.findByUsername(auth.getName());
+		user = userList.get(0);
+		
+		// Update DB
+		UserModel newUser = new UserModel(newUserModel.getUsername(), user.getPassword(), user.getEmail_address());
+		newUser.setActivated(true);
+		userRepository.delete(user);
+		userRepository.save(newUser);
+
+		return "index";
+	}
+
+	@RequestMapping(value = "/changePassword")
+	public String showChangePassword() {
+		return "changePassword";
+	}
+
+	@Transactional
+	@RequestMapping(value = "/changePassword", method = RequestMethod.POST)
+	public String doChangePassword(@Valid @ModelAttribute UserModel newUserModel, BindingResult bindingResult, Model model) {
+
+		// Get user from DB
+		UserModel user = null;
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		List<UserModel> userList = userRepository.findByUsername(auth.getName());
+		user = userList.get(0);
+		
+		// Update DB
+		UserModel newUser = new UserModel(user.getUsername(), passwordEncoder.encode(newUserModel.getPassword()), user.getEmail_address());
+		newUser.setActivated(true);
+		userRepository.delete(user);
+		userRepository.save(newUser);
+
+		return "index";
+	}
+	
+	
+	@RequestMapping(value = "/hideProfile")
+	public String showHideMe() {
+		
+		// Get user from DB
+		UserModel user = null;
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		List<UserModel> userList = userRepository.findByUsername(auth.getName());
+		user = userList.get(0);
+		
+		// Update DB
+		if (user.isHidden()) {
+			UserModel newUser = new UserModel(user.getUsername(), user.getPassword(), user.getEmail_address());
+			newUser.setActivated(true);
+			newUser.setHidden(false);
+			userRepository.delete(user);
+			userRepository.save(newUser);
+		}
+		else {
+			UserModel newUser = new UserModel(user.getUsername(), user.getPassword(), user.getEmail_address());
+			newUser.setActivated(true);
+			newUser.setHidden(true);
+			userRepository.delete(user);
+			userRepository.save(newUser);
+		}
+		
+		return "hideProfile";
 	}
 }
