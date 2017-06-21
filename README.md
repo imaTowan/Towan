@@ -49,6 +49,8 @@ Checklist:
  - Import to preferred IDE
  - Setup db.properties
  - Run the project
+ - Sign up
+ - Log in
 
 **Download project on GitHub**
 Click the "Clone or Download" Button on the project's github page and choose download ZIP.
@@ -93,6 +95,17 @@ The IDE should set this automatically.
 To avoid database errors, the Towan project should be the only project on the right side.
 
 Now you can run the application.
+
+**Sign up**
+You can use the "Sign up" button on the welcome page to create an account.
+Please consider our password policies:
+- a password must be at least 14 alphanumeric symbols long
+After a successful registration, a verification link should be sent to your provided E-Mail address.
+You do not need to verify your account; in the current state of the application it is not necessary.
+
+**Log in**
+After a successful registration, use the "Sign in" button to log into the application.
+You will be forwarded to the home page, from where all features of the application can be accessed.
 
 **One last note**
 This web application offers the user the opportunity to play a browser game.
