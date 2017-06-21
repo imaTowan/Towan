@@ -31,42 +31,72 @@ h1 {
 	font-family: "Algerian";
 	font-size: 32px;
 }
+
+h2 {
+	font-family: "Algerian";
+	font-size: 32px;
+	padding-left: 45%;
+}
+.container{
+		text-align: left;
+		width: 100%;
+		margin-top: -8%;
+		padding-top: -20%;
+		padding-left: 30%;
+		padding-right: 30%;
+	}
+	
+
+	#footer {
+		margin-top: 8%;
+	    margin-left: 18%;
+	    height:0%;   /* Height of the footer */
+	    width: 70%;
+	}
+	
+	.profile{
+
+		width: 30%;
+		margin: 20px 0;
+		padding-left: 80%;
+		padding-right: 10%;
+	}
+	
+	.profile-sidebar{
+		padding-left: 90%;
+		background: #fff;
+	}
 </style>
 </head>
 
 <body>
 
 	<div style="background: url('HeaderWall.png')" class="jumbotron text-center">
-		<h1>Welcome</h1>
+		<h1>Towan</h1>
 	</div>
-
-	<div class="row content text-center">
-		<div class="well col-sm-3 sidenav">
-			<h2>Test</h2>
+		<h2>Welcome!</h2>
+			<div class="profile">
+			<div class="profile-sidebar">
+				<a href="login">
+					<button class="buttonStyle">Sign In</button>
+				</a>
+				<br />
+				<a href="register">
+					<button class="buttonStyle">Sign Up</button>
+				</a>
+				</div>
 		</div>
+	<div class="container text-center">
+	
+		<p> Welcome to our page Towan.us! 
+		</br></br> In case you do not know what Towan.us is; This is a gaming website providing you with a Tower Defence game we created on 
+		our own! It offers you a lot of cool features as well as a great community to share your stats and improvements with!</br></br>
+		So do not hesitate to create an account and to try your best being the best gamer on Towan.us!</br></br>
+		We wish you a lot of fun and are happy to welcome you! </br></br>
+		<b>Your team Towan.us</b>
+		</p>
+	
 		
-		<div class="col-sm-5 text-center">Video</div>
-		<br/><br/>
-		
-		
-		
-		
-		<!-- FOR TESTING ONLY -->
-		<div class="col-sm-5 text-center">
-			<div><b>Username: </b><p th:text="${currUsername}"></p></div>
-			<a href="logout">Logout</a>
-		</div>
-		
-		
-			
-		<div class="well col-sm-3 sidenav">
-			<a href="login">
-				<button class="buttonStyle">Sign In</button>
-			</a>
-			<br />
-			<a href="register">
-				<button class="buttonStyle">Sign Up</button>
-			</a>
 		</div>
 	</div>
 

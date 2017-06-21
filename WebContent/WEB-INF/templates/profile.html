@@ -116,10 +116,12 @@
 	
 	.profile-content{
 		text-align: center;
-		width: 70%;
-		margin-left: 0%;
-		margin-top: -15%;
-		padding-left: 50%;
+		width: 50%;
+		height:50%;
+		min-width: 150px;
+		min-height: 150px; 
+		margin-left: 40%;
+		margin-top: -20%;
 		background: #fff;
 		
 	}
@@ -139,15 +141,20 @@
 	table {
 		color: #333;
 	    font-family: Helvetica, Arial, sans-serif;
-	    width: 80%;
+	    width: 50%;
+	    height: 80%;
 	    border-collapse: collapse; 
 	    border-spacing: 0; 
-	    margin-left: -25%;
+	    margin-left: 10%;
+	    padding-bottom: 30%;
+	    font-size: 18px;
 	}
 	td, th {  
 	    border: 1px solid transparent; 
-	    height: 30px;
+	    height: 90%;
+	    min-height: 150px;
 	    transition: all 0.3s;  
+
 	}
 	
 	th {
@@ -192,13 +199,19 @@
 		<nav th:replace="~{includes/searchNav :: search}"></nav>
 	
 	<br/>
-		<div class="container">
+		<div class="container">"
 			<div class="row profile">
 				<div class ="col-md-3">
 					<div class="profil-sidebar">
 						<div class="profile-user-pic">
 							<img src="profile_pic.PNG" alt="userpic" class="img-responsive img-circle" style="width:1000px; height:400px">
-							<div class="profile-user-title">
+							
+									</div>						
+								</div>
+							</div>
+						</div>
+					<div class="profile-content">
+						<div class="profile-user-title">
 								<div class="profile-user-name">
 								</div>
 										<div class="profile-user-job">
@@ -231,12 +244,6 @@
 													</table>
 											</div>
 										</div>
-									</div>						
-								</div>
-							</div>
-						</div>
-					<div class="profile-content">
-						<p> The stats will be here! </p>
 					</div>
 							
 			</div>

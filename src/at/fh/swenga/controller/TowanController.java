@@ -27,11 +27,10 @@ public class TowanController {
 	UserRepository userRepository;
 
 	@RequestMapping(value = { "/", "index" })
-	public String showWelcome(Model model) {
-
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		model.addAttribute("currUsername", auth.getName());
+	public String showWelcome() {
+		
 		return "index";
+
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -53,8 +52,12 @@ public class TowanController {
 		return "index";
 	}
 
-	@RequestMapping(value = "/home")
-	public String showHome() {
+	@RequestMapping(value = {"/","/home"})
+	public String showHome(Model model) {
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		model.addAttribute("currUsername", auth.getName());
+		
 		return "home";
 	}
 
