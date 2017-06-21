@@ -67,7 +67,7 @@
 						<!--  list all items ----------------------------------------------------------- -->
 						<tr th:each="forums : ${#request.getAttribute('forums')}">
 							<td>
-							<a href = "entry" th:text="${forums.title}"></td>
+							<a th:href = "@{/entry(id=${forums.subforumId})}" th:text="${forums.title}"></td>
 							</a>
 							<td th:text="${#lists.size(forums.entries)}"></td>
 						</tr>

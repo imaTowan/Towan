@@ -3,16 +3,26 @@ package at.fh.swenga.game.data;
 import static at.fh.swenga.game.helpers.Artist.*;
 import static at.fh.swenga.game.helpers.Scorer.SaveScore;
 
-import org.lwjgl.input.Mouse;
+import java.util.List;
 
+import org.lwjgl.input.Mouse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+import at.fh.swenga.dao.UserRepository;
 import at.fh.swenga.game.UI.UI;
 import at.fh.swenga.game.UI.UI.Menu;
 import at.fh.swenga.game.dependencies.slick.Texture;
 import at.fh.swenga.game.helpers.StateManager;
 import at.fh.swenga.game.helpers.StateManager.GameState;
+import at.fh.swenga.model.UserModel;
 
 public class Game {
 
+	@Autowired
+	UserRepository userRepository;
+	
 	private Grid grid;
 	private Player player;
 	private WaveManager waveManager;
@@ -97,14 +107,25 @@ public class Game {
 	
 	public void UpdateDB(int new_enemies_slain, int new_waves_completed, int new_towers_built, int new_playtime){
 		// GET DATA FROM DB
-		String sql="SELECT total_enemies_slain,total_waves_completed,total_towers_built,playtime FROM user WHERE user.id='user_id'";
-		
-		
+		UserModel user = null;
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		List<UserModel> userList = userRepository.findByUsername(auth.getName());
+		user = userList.get(0);
+		int old_enemies_slain = user.getTotal_enemies_slain();
+		int old_waves_completed = user.getTotal_waves_completed();
+		int old_towers_built = user.getTotal_towers_built();
+		int old_playtime = user.getPlaytime();
 		
 		// UPDATE DATA
+		int updated_enemies_slain = old_enemies_slain + new_enemies_slain;
+		int updated_waves_completed = old_waves_completed + new_waves_completed;
+		int updated_towers_built = old_towers_built + new_towers_built;
+		int updated_playtime = old_playtime + new_playtime;
 		
-		
-		// WRITE NEW DATA TO DB
-		
+		// WRITE UPDATED DATA TO DB
+		user.setTotal_enemies_slain(updated_enemies_slain);
+		user.setTotal_waves_completed(updated_waves_completed);
+		user.setTotal_towers_built(updated_towers_built);
+		user.setPlaytime(updated_playtime);
 	}
 }

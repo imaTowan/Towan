@@ -59,17 +59,16 @@
 				<table data-toggle="table" class="table table-striped">
 					<thead>
 						<tr>
-							<th data-sortable="true">Topic</th>
-							<th data-sortable="true">Number of Entries</th>						
+							<th data-sortable="true">Text</th>
+							<th data-sortable="true">User</th>
+							<th data-sortable="true">Date</th>						
 						</tr>
 					</thead>
 					<tbody>
 						<!--  list all items ----------------------------------------------------------- -->
 						<tr th:each="forums : ${#request.getAttribute('forums')}">
-							<td>
-							<th:text="${forums.text}"></td>
+							<td th:text="${forums.text}"></td>
 							
-							<td th:text="${#lists.size(forums.entries)}"></td>
 						</tr>
 						
 					</tbody>
