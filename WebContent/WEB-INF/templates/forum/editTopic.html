@@ -59,23 +59,25 @@ h1 {
 	<div class="container" role="main">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
-				<form class="form-horizontal" method="post" th:action="${forums} ? @{/editEntry(id=${forums.id})} : @{addEntry}">
+				<form class="form-horizontal" method="post" th:action="${forums} ? @{/editTopic(id=${forums.forumId})} : @{addTopic}">
 					<fieldset>
-						<legend th:text="${forums}? 'Change Entry' : 'New Entry'">New Entry</legend>
-
-						<!-- --------------  text ---------------- -->
+						<legend th:text="${forums}? 'Change Topic' : 'New Topic'">New Topic</legend>
+						
+						<!-- --------------  topic ---------------- -->
 						<div class="form-group">
-							<label for="inputText" class="col-md-2 control-label">Text</label>
+							<label for="inputName" class="col-md-2 control-label">Topic</label>
 							<div class="col-md-10">
-								<input class="form-control" id="inputText" type="text"
-									name="text" th:value="${forums} ? ${forums.text}">
+								<input class="form-control" id="inputName" type="text"
+									name="name" th:value="${forums} ? ${forums.name}">
 							</div>
 						
 						<!-- --------------  buttons ---------------- -->
 						<div class="form-group">
 							<div class="col-md-10 col-md-offset-2">
-								<button type="submit" class="btn btn-primary">Submit</button>
-								<a href="listEmployees">
+								<a href="forum">
+									<button type="submit" class="btn btn-primary">Submit</button>
+								</a>
+								<a href="forum">
 									<button type="button" class="btn btn-default">Cancel</button>
 								</a>
 							</div>

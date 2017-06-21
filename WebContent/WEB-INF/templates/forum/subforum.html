@@ -7,47 +7,48 @@
 <div th:replace="~{includes/bootstrapCSS :: bootstrapCSS}" />
 
 <style>
-	.navBtn
-	{
-		background-color: #cccccc;
-		border: 2px solid #bbbbbb;	
-		color: black;
-		font-style: bold;
-		font-size: 20px;
-		font-family: Calibri;
-	}
-	
-	.navBtn:hover
-	{
-		background-color: #bbbbbb;
-	}
-	
-	.jumbotron
-	{
-		margin-bottom: 0px;
-	}
-	
-	.row
-	{
-		width: 100%;
-		margin: 0px;
-		padding: 0px;
-	}
+.navBtn {
+	background-color: #cccccc;
+	border: 2px solid #bbbbbb;
+	color: black;
+	font-style: bold;
+	font-size: 20px;
+	font-family: Calibri;
+}
+
+.navBtn:hover {
+	background-color: #bbbbbb;
+}
+
+.jumbotron {
+	margin-bottom: 0px;
+}
+
+.row {
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+h1 {
+	font-family: "Algerian";
+	font-size: 32px;
+}
 </style>
 
 
 
 </head>
 <body>
-	<div class="jumbotron text-center">
+	<div style="background: url('../HeaderWall.png')" class="jumbotron text-center">
 		<h1>Towan</h1>
 	</div>
 	<div class="row">
 		<div class="btn-group-justified">
-		  <a href="home" class="btn navBtn">Home</a>
-		  <a href="game" class="btn navBtn">Game</a>
-		  <a href="profile" class="btn navBtn">Profile</a>
-		  <a href="settings" class="btn navBtn">Settings</a>
+		  <a href="../home" class="btn navBtn">Home</a>
+		  <a href="../game" class="btn navBtn">Game</a>
+		  <a href="../profile" class="btn navBtn">Profile</a>
+		  <a href="../settings" class="btn navBtn">Settings</a>
 		</div>
 	</div>
 	<br/>
@@ -60,7 +61,8 @@
 					<thead>
 						<tr>
 							<th data-sortable="true">Topic</th>
-							<th data-sortable="true">Number of Entries</th>						
+							<th data-sortable="true">Number of Entries</th>	
+							<th data-sortable="true">Actions</th>					
 						</tr>
 					</thead>
 					<tbody>
@@ -70,8 +72,27 @@
 							<a th:href = "@{/entry(id=${forums.subforumId})}" th:text="${forums.title}"></td>
 							</a>
 							<td th:text="${#lists.size(forums.entries)}"></td>
+							
+							<td>
+								<a th:href="@{/deleteSubforum(id=${forums.SubforumId})}">
+										<button type="button" class="btn btn-xs btn-danger">
+											<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+											Delete
+										</button>
+								</a>
+							
+							</td>
 						</tr>
-						
+						<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<p>
+			
+					<a href="../addSubforum">
+						<button type="button" class="btn btn-success">Add new
+							Forum</button>
+					</a> 
+				</p>
+			</div>
 					</tbody>
 	</table>
 	</div>

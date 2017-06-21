@@ -14,4 +14,5 @@ public interface SubforumRepository extends JpaRepository<SubforumModel, Integer
 	
 	public List<SubforumModel> findByForumForumId(int id);
 	public SubforumModel findBySubforumId(int id);
+	public SubforumModel deleteBysubforumId(int id);
 }

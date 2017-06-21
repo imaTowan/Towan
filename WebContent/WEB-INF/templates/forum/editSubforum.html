@@ -59,23 +59,25 @@ h1 {
 	<div class="container" role="main">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
-				<form class="form-horizontal" method="post" th:action="${forums} ? @{/editEntry(id=${forums.id})} : @{addEntry}">
+				<form class="form-horizontal" method="post" th:action="${forums} ? @{/editSubforum(id=${forums.subforumId})} : @{addSubforum}">
 					<fieldset>
-						<legend th:text="${forums}? 'Change Entry' : 'New Entry'">New Entry</legend>
-
-						<!-- --------------  text ---------------- -->
+						<legend th:text="${forums}? 'Change Subforum' : 'New Subforum'">New Subforum</legend>
+						
+						<!-- --------------  title ---------------- -->
 						<div class="form-group">
-							<label for="inputText" class="col-md-2 control-label">Text</label>
+							<label for="inputTitle" class="col-md-2 control-label">Title</label>
 							<div class="col-md-10">
-								<input class="form-control" id="inputText" type="text"
-									name="text" th:value="${forums} ? ${forums.text}">
+								<input class="form-control" id="inputTitle" type="text"
+									name="title" th:value="${forums} ? ${forums.title}">
 							</div>
 						
 						<!-- --------------  buttons ---------------- -->
 						<div class="form-group">
 							<div class="col-md-10 col-md-offset-2">
-								<button type="submit" class="btn btn-primary">Submit</button>
-								<a href="listEmployees">
+								<a href="subforum">
+									<button type="submit" class="btn btn-primary">Submit</button>
+								</a>
+								<a href="subforum">
 									<button type="button" class="btn btn-default">Cancel</button>
 								</a>
 							</div>
