@@ -12,5 +12,7 @@ import at.fh.swenga.model.EntryModel;
 @Transactional
 public interface EntryRepository extends JpaRepository<EntryModel, Integer>{
 
-	public List<EntryModel> findBySubforumSubforumId(int id);
+	public List<EntryModel> findBySubforumSubforumId(int id);	
+	public EntryModel findByEntryId(int id);
+	
 }

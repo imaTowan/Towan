@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Towan</title>
+<div th:replace="~{includes/bootstrapMeta :: bootstrapMeta}" />
+<div th:replace="~{includes/bootstrapCSS :: bootstrapCSS}" />
+
+<style>
+	.navBtn
+	{
+		background-color: #cccccc;
+		border: 2px solid #bbbbbb;	
+		color: black;
+		font-style: bold;
+		font-size: 20px;
+		font-family: Calibri;
+	}
+	
+	.navBtn:hover
+	{
+		background-color: #bbbbbb;
+	}
+	
+	.jumbotron
+	{
+		margin-bottom: 0px;
+	}
+	
+	.row
+	{
+		width: 100%;
+		margin: 0px;
+		padding: 0px;
+	}
+</style>
+
+
+
+</head>
+<body>
+	<div class="jumbotron text-center">
+		<h1>Towan</h1>
+	</div>
+	<div class="row">
+		<div class="btn-group-justified">
+		  <a href="home" class="btn navBtn">Home</a>
+		  <a href="game" class="btn navBtn">Game</a>
+		  <a href="profile" class="btn navBtn">Profile</a>
+		  <a href="settings" class="btn navBtn">Settings</a>
+		</div>
+	</div>
+	<br/>
+	<div class="row text-center">
+		
+		<h1>Forum</h1>
+		
+	<div class="container" role="main">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<form class="form-horizontal" method="post" th:action="${forums} ? @{/editEntry(id=${forums.id})} : @{addEntry}">
+					<fieldset>
+						<legend th:text="${forums}? 'Change Entry' : 'New Entry'">New Entry</legend>
+
+						<!--  ----------------  id ---------------- -->
+						<!--  <span aria-hidden="true">
+						 <div class="form-group">
+							<label for="inputID" class="col-md-2 control-label">Id</label>
+							<div class="col-md-10">
+								<input class="form-control" id="inputID" type="text" name="id" th:value="${forums} ? ${forums.entry_id}" th:readonly="${forums != null}">
+							</div>
+						</div>
+						</span>-->
+						<!-- --------------  text ---------------- -->
+						<div class="form-group">
+							<label for="inputText" class="col-md-2 control-label">First
+								Text</label>
+							<div class="col-md-10">
+								<input class="form-control" id="inputText" type="text"
+									name="text" th:value="${forums} ? ${forums.text}">
+							</div>
+						
+						<!-- --------------  buttons ---------------- -->
+						<div class="form-group">
+							<div class="col-md-10 col-md-offset-2">
+								<button type="submit" class="btn btn-primary">Submit</button>
+								<a href="listEmployees">
+									<button type="button" class="btn btn-default">Cancel</button>
+								</a>
+							</div>
+						</div>
+
+					</fieldset>
+					<input type="hidden" th:name="${_csrf.parameterName}"
+						th:value="${_csrf.token}" />
+				</form>
+			</div>
+		</div>
+
+	</div>
+	<a href="impressum">About</a>
+</body>
+</html>
