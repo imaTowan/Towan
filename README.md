@@ -72,9 +72,9 @@ Name this file db.properties (name needs to match exactly) and click finish.
 Open the db.properties file.
 First, copy and paste the following three lines into the file. (They represent a database connection)
 
-db.url=jdbc:mysql://10.25.2.109:3306/IMA15_haring_project_1 
-db.username=IMA15_haring 
-db.password=ima15
+- db.url=jdbc:mysql://10.25.2.109:3306/IMA15_haring_project_1 
+- db.username=IMA15_haring 
+- db.password=ima15
 
 If you have access to another database, we deeply recommend using it.
 The example database can be used as well, but keep in mind that it is necessary to have a stable 
