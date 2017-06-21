@@ -2,11 +2,11 @@ package at.fh.swenga.controller;
 
 import java.util.List;
 
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import at.fh.swenga.dao.EntryRepository;
 import at.fh.swenga.dao.ForumRepository;
@@ -36,17 +36,17 @@ public class ForumController {
 	}
 	
 	@RequestMapping(value = "/forum/subforum")
-	public String showSubforum(Model model) {
-		List<SubforumModel> forums = subforumRepository.findAll();
+	public String showSubforum(Model model, @RequestParam int id) {
+		List<SubforumModel> forums = subforumRepository.findByForumForumId(id);
 		model.addAttribute("forums", forums);
 		return "forum/subforum";
 	}
 	
-	@RequestMapping(value = "/forum/entry")
-	public String showEntries(Model model) {
-		List<EntryModel> forums = entryRepository.findAll();
+	@RequestMapping(value = "/entry")
+	public String showEntries(Model model, @RequestParam int id) {
+		List<EntryModel> forums = entryRepository.findBySubforumSubforumId(id);
 		model.addAttribute("forums", forums);
-		return "forum/subforum";
+		return "forum/entry";
 	}
 	
 }

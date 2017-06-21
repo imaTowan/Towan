@@ -24,7 +24,7 @@ public class SubforumModel {
 	@Id
 	@Column(name = "subforum_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int subforum_id;
+	private int subforumId;
 	
 	@Column(nullable = false, length = 30)
 	private String title;
@@ -38,7 +38,7 @@ public class SubforumModel {
 	private ForumModel forum;
 	
 	
-	@OneToMany(fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="subforum",fetch=FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	private List<EntryModel> entries;
 	
@@ -55,12 +55,12 @@ public class SubforumModel {
 
 	
 	//Getter & Setter
-	public int getSubforum_id() {
-		return subforum_id;
+	public int getSubforumId() {
+		return subforumId;
 	}
 
-	public void setSubforum_id(int subforum_id) {
-		this.subforum_id = subforum_id;
+	public void setSubforumId(int subforumId) {
+		this.subforumId = subforumId;
 	}
 
 	public String getTitle() {
@@ -101,7 +101,7 @@ public class SubforumModel {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + subforum_id;
+		result = prime * result + subforumId;
 		return result;
 	}
 
@@ -114,7 +114,7 @@ public class SubforumModel {
 		if (getClass() != obj.getClass())
 			return false;
 		SubforumModel other = (SubforumModel) obj;
-		if (subforum_id != other.subforum_id)
+		if (subforumId != other.subforumId)
 			return false;
 		return true;
 	} 
