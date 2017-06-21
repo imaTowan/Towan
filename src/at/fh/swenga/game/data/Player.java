@@ -9,6 +9,8 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
 import at.fh.swenga.game.helpers.Clock;
+import at.fh.swenga.game.helpers.StateManager;
+import at.fh.swenga.game.helpers.StateManager.GameState;
 
 public class Player {
 
@@ -56,8 +58,11 @@ public class Player {
 	
 	public static void ModifyLives(int amount) {
 		Lives += amount;
-		if (Lives <= 0)
+		if (Lives <= 0) {
 			GameOver = true;
+			StateManager.setGameToNull();
+			StateManager.setState(GameState.MAINMENU);
+		}
 	}
 	
 	public static void ModifyScore(int amount) {
