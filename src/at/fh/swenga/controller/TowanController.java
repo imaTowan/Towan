@@ -96,6 +96,10 @@ public class TowanController {
 			List<UserModel> userFindList = userRepository.findByUsername(searchString);
 			allUsers = userFindList.get(0);
 			System.out.println(allUsers);
+			
+			if (allUsers.isHidden() == true) {
+				return "userHidden";
+			}
 
 			model.addAttribute("currUsername", allUsers.getUsername());
 			model.addAttribute("playtime", allUsers.getPlaytime());
