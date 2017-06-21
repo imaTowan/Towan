@@ -9,5 +9,6 @@ import at.fh.swenga.model.ForumModel;
 @Repository
 @Transactional
 public interface ForumRepository extends JpaRepository<ForumModel, Integer>{
-
+	
+	public void deleteByForumId(int Id);
 }
