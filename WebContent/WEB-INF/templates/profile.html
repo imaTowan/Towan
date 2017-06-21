@@ -10,6 +10,7 @@
 
 
 <style>
+
 	.navBtn
 	{
 		background-color: #cccccc;
@@ -134,6 +135,43 @@
 	    width: 70%;
 	}
 	
+	table {
+		color: #333;
+	    font-family: Helvetica, Arial, sans-serif;
+	    width: 80%;
+	    border-collapse: collapse; 
+	    border-spacing: 0; 
+	    margin-left: -25%;
+	}
+	td, th {  
+	    border: 1px solid transparent; 
+	    height: 30px;
+	    transition: all 0.3s;  
+	}
+	
+	th {
+		background: #DFDFDF; 
+    	font-weight: bold;
+    	width: 80%;
+    	min-width: 150px;
+
+}
+
+	td {  
+	    background: #FAFAFA;
+	    text-align: center;
+	    width: 80%;
+	    min-width: 150px;
+	}
+	
+	       
+	tr:nth-child(even) td { background: #F1F1F1; }   
+	     
+	tr:nth-child(odd) td { background: #FEFEFE; }  
+	
+	tr td:hover { background: #666; color: #FFF; }  
+
+	
 </style>
 
 
@@ -157,21 +195,38 @@
 				<div class ="col-md-3">
 					<div class="profil-sidebar">
 						<div class="profile-user-pic">
-							<img src="default-userpic.jpg" alt="userpic" class="img-responsive img-circle" style="width:800px; height:500px">
+							<img src="profile_pic.PNG" alt="userpic" class="img-responsive img-circle" style="width:1000px; height:400px">
 							<div class="profile-user-title">
 								<div class="profile-user-name">
-									<b>Username: </b><p th:text="${currUsername}"></p>
 								</div>
 										<div class="profile-user-job">
 																	
 										</div>		
 											<div class="profile-user-menu">
+													 
 												<ul class="user-nav">
-													<li class="active"><i class="glyphicon gylphicon-time">Playtime:      <p th:text="${playtime}"></p>  ...</i></li>
-													<li class="active"><i class="glyphicon gylphicon-time">Enemies Slain:   <p th:text="${total_enemies_slain}"></p> ...</i></li>
-													<li class="active"><i class="glyphicon gylphicon-time">Towers Build:    <p th:text="${towers_build}"></p> ...</i></li>
-													<li class="active"><i class="glyphicon gylphicon-time">Waves Completed:  <p th:text="${waves_completed}"></p> ...</i></li>
-												</ul>
+													<table id="user-table">
+														<tr>
+															<th>Username:</th>
+															<td><p th:text="${currUsername}"></p></td>
+														</tr>
+														<tr>
+															<th>Playcount:</th>
+															<td> <p th:text="${playtime}"></p></td>
+														</tr>
+														<tr>
+															<th>Enemies Slain:</th>
+															<td><p th:text="${total_enemies_slain}"></p></td>
+														</tr>
+														<tr>
+															<th>Towers Build:</th>
+															<td><p th:text="${towers_build}"></p></td>
+														</tr>
+														<tr>
+															<th>Waves Completed:</th>
+															<td><p th:text="${waves_completed}"></p></td>
+														</tr>
+													</table>
 											</div>
 										</div>
 									</div>						
