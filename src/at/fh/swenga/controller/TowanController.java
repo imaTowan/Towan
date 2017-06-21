@@ -74,8 +74,7 @@ public class TowanController {
 	
 	@RequestMapping(value = "/towanGame")
 	public String startGame() {
-		Boot game = new Boot();
-		game = null;
+		new Boot();
 		return "towanGame";
 	}
 	
@@ -96,7 +95,6 @@ public class TowanController {
 	
 	@ExceptionHandler(Exception.class)
 	public String handleAllException(Exception ex) {
-		System.out.println("but an error occured.");
 		ex.printStackTrace();
 		return "error";
 	}
