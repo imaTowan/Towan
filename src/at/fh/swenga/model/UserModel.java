@@ -272,6 +272,7 @@ public class UserModel implements java.io.Serializable {
 	public void setUserRole(Set<UserRoleModel> userRole) {
 		this.userRole = userRole;
 	}
+	
 
 	
 	//equals & hashcode
