@@ -13,4 +13,5 @@ import at.fh.swenga.model.SubforumModel;
 public interface SubforumRepository extends JpaRepository<SubforumModel, Integer>{
 	
 	public List<SubforumModel> findByForumForumId(int id);
+	public SubforumModel findBySubforumId(int id);
 }

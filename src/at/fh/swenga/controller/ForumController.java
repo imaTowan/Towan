@@ -1,11 +1,18 @@
 package at.fh.swenga.controller;
 
+import java.sql.Timestamp;
 import java.util.List;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import at.fh.swenga.dao.EntryRepository;
@@ -49,4 +56,45 @@ public class ForumController {
 		return "forum/entry";
 	}
 	
+	@RequestMapping(value = "/addTopic", method = RequestMethod.GET)
+	public String showAddEmployeeForm(Model model) {
+		return "editTopic";
+	}
+	
+	@RequestMapping("/delete")
+	public String deleteTopic(Model model, @RequestParam int id) {
+		forumRepository.delete(id);
+
+		return "forward:forum";
+	}
+	
+	@RequestMapping(value = "/addEntry", method = RequestMethod.GET)
+	public String showAddEntryForm(Model model) {
+		return "forum/editEntry";
+	}
+	
+	@RequestMapping(value = "/addEntry", method = RequestMethod.POST)
+	public String addEntry(@Valid @ModelAttribute EntryModel newEntryModel, BindingResult bindingResult,
+			Model model) {
+		if (bindingResult.hasErrors()) {
+			String errorMessage = "";
+			for (FieldError fieldError : bindingResult.getFieldErrors()) {
+				errorMessage += fieldError.getField() + " is invalid<br>";
+			}
+			model.addAttribute("errorMessage", errorMessage);
+			return "forward:/entry";
+		}
+		
+		
+		
+		//if (newEntryModel != null) {
+			//model.addAttribute("errorMessage", "Entry already exists!<br>");
+		//} else {
+		newEntryModel.setDate(new Timestamp(System.currentTimeMillis()));
+		newEntryModel.setUser(null);
+		newEntryModel.setSubforum(null);
+		entryRepository.save(newEntryModel);
+		
+		return "forum/entry";
+	}
 }
