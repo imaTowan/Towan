@@ -19,9 +19,6 @@ import at.fh.swenga.game.helpers.StateManager.GameState;
 import at.fh.swenga.model.UserModel;
 
 public class Game {
-
-	@Autowired
-	UserRepository userRepository;
 	
 	private Grid grid;
 	private Player player;
@@ -83,15 +80,6 @@ public class Game {
 	}
 	
 	public void update() {
-		if (Player.Lives == 0 && Player.GameOver == true){
-			//UPDATE DB
-			int new_enemies_slain = Player.Enemies_slain;
-			int new_waves_completed = Player.Waves_completed;
-			int new_towers_built = Player.Towers_built;
-			int new_playtime = 1;
-			UpdateDB(new_enemies_slain, new_waves_completed, new_towers_built, new_playtime);
-			Player.GameOver = false;
-		}
 		if (Player.Lives > 0) {
 			DrawQuadTex(menuBackground, WIDTH, 0, MENU_WIDTH, HEIGHT);
 			grid.draw();
@@ -104,28 +92,4 @@ public class Game {
 			StateManager.setState(GameState.MAINMENU);
 		}
 	}	
-	
-	public void UpdateDB(int new_enemies_slain, int new_waves_completed, int new_towers_built, int new_playtime){
-		// GET DATA FROM DB
-		UserModel user = null;
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		List<UserModel> userList = userRepository.findByUsername(auth.getName());
-		user = userList.get(0);
-		int old_enemies_slain = user.getTotal_enemies_slain();
-		int old_waves_completed = user.getTotal_waves_completed();
-		int old_towers_built = user.getTotal_towers_built();
-		int old_playtime = user.getPlaytime();
-		
-		// UPDATE DATA
-		int updated_enemies_slain = old_enemies_slain + new_enemies_slain;
-		int updated_waves_completed = old_waves_completed + new_waves_completed;
-		int updated_towers_built = old_towers_built + new_towers_built;
-		int updated_playtime = old_playtime + new_playtime;
-		
-		// WRITE UPDATED DATA TO DB
-		user.setTotal_enemies_slain(updated_enemies_slain);
-		user.setTotal_waves_completed(updated_waves_completed);
-		user.setTotal_towers_built(updated_towers_built);
-		user.setPlaytime(updated_playtime);
-	}
 }

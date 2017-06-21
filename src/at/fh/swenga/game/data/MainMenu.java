@@ -38,6 +38,9 @@ public class MainMenu {
 	}
 	
 	public void update() {
+		if (Player.GameOver == true){
+			Player.GameOver = false;
+		}
 		
 		if (highScore == 1){
 			if (LoadScore(HIGHSCORE_FILENAME) == 0) {

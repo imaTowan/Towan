@@ -20,7 +20,11 @@ public class Player {
 	private ArrayList<Tower> towerList;
 	private boolean leftMouseButtonDown, rightMouseButtonDown, holdingTower;
 	private Tower tempTower;
-	public static int Gold, Lives, Score, HighScore, Enemies_slain, Waves_completed, Towers_built;
+	public static int Gold, Lives, Score, HighScore;
+	public static int Enemies_slain = 0;
+	public static int Waves_completed = 0;
+	public static int Towers_built = 0;
+	public static int Playtime = 0;
 	public static boolean GameOver = false;
 	
 	public Player(Grid grid, WaveManager waveManager){
@@ -60,6 +64,7 @@ public class Player {
 		Lives += amount;
 		if (Lives <= 0) {
 			GameOver = true;
+			Playtime = 1;
 			StateManager.setGameToNull();
 			StateManager.setState(GameState.MAINMENU);
 		}
