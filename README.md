@@ -11,12 +11,9 @@ Team
  - SCHOPPER Fabian
 
 Current To Do List:
- - Login Page (Design)
- - Login Page (Functionality)
- - better security implementation for spring-security.xml
- - get redirects working (set /home, /forum, /game, /settings --> /secured/home, ...
- - Registration Functionality
  - Forum Page Design
  - Forum Functionality
- - Profile Page Design
- - Game Page Design
+ - index improvement
+ - search functionality
+ - better logout? (/home link to /index)
+ - admin stuff
