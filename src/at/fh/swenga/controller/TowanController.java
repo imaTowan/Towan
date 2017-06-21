@@ -69,7 +69,7 @@ public class TowanController {
 	
 	@RequestMapping(value = "/profile")
 	public String showProfile(Model model) {
-<<<<<<< HEAD
+
 		UserModel user = null;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		List<UserModel> userList = userRepository.findByUsername(auth.getName());
@@ -79,10 +79,9 @@ public class TowanController {
 		model.addAttribute("total_enemies_slain", user.getTotal_enemies_slain());
 		model.addAttribute("towers_build",user.getTotal_towers_built());
 		model.addAttribute("waves_completed",user.getTotal_waves_completed());
-=======
+
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		model.addAttribute("currUsername",auth.getName());
->>>>>>> 2538c3c3836ea361482a74bbe80c4d9b2ffa8ed5
 		return "profile";
 	}
 	
