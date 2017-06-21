@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="ISO-8859-1">
 <title>Towan</title>
 <div th:replace="~{includes/bootstrapMeta :: bootstrapMeta}" />
@@ -188,6 +189,7 @@
 		  <a href="forum" class="btn navBtn">Forum</a>
 		  <a href="settings" class="btn navBtn">Settings</a>
 	</div>
+		<nav th:replace="~{includes/searchNav :: search}"></nav>
 	
 	<br/>
 		<div class="container">
