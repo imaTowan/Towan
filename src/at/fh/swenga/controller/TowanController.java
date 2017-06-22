@@ -8,6 +8,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.web.authentication.switchuser.AuthenticationSwitchUserEvent;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -52,14 +54,17 @@ public class TowanController {
 		return "index";
 	}
 
-	@RequestMapping(value = {"/","/home"})
+	@RequestMapping(value = "/home")
 	public String showHome(Model model) {
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		model.addAttribute("currUsername", auth.getName());
 		
+		
 		return "home";
+
 	}
+	
 
 	@RequestMapping(value = "/profile")
 	public String showProfile(Model model) {
@@ -103,7 +108,7 @@ public class TowanController {
 			if (allUsers.isHidden() == true) {
 				return "userHidden";
 			}
-
+			
 			model.addAttribute("currUsername", allUsers.getUsername());
 			model.addAttribute("playtime", allUsers.getPlaytime());
 			model.addAttribute("total_enemies_slain", allUsers.getTotal_enemies_slain());
@@ -115,7 +120,7 @@ public class TowanController {
 		}
 
 	@RequestMapping(value = "/game", method = RequestMethod.GET)
-	public String showGame() {
+	public String showGame(Model model) {
 		return "game";
 	}
 
