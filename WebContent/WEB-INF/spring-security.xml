@@ -5,7 +5,7 @@
 	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
 	<http>
-			<csrf disabled="true" />
+			<csrf  />
 		<intercept-url pattern="/secured/**" access="hasRole('ROLE_USER')"/>
 		
 		<!-- 

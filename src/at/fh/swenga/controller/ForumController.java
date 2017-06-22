@@ -122,15 +122,9 @@ public class ForumController {
 			return "/forum";
 		}
 
-		if (newForumModel != null) {
-			model.addAttribute("errorMessage", "Forum already exists!<br>");
-			return "/forum";
 		
-		} else {
-			
 		forumRepository.save(newForumModel);
 		return "/forum";
-		}
 	}
 		
 		@RequestMapping(value = "/addSubforum", method = RequestMethod.GET)
@@ -150,15 +144,8 @@ public class ForumController {
 				return "forum/subforum";
 			}
 
-			if (newSubforumModel != null) {
-				model.addAttribute("errorMessage", "Forum already exists!<br>");
-				return "forum/subforum";
-			
-			} else {
-				
 			subforumRepository.save(newSubforumModel);
 			return "forum/subforum";
-				}	
 			}
 		@RequestMapping("/deleteSubforum")
 		public String deleteSubforum(Model model, @RequestParam int id) {
