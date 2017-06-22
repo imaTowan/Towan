@@ -52,7 +52,7 @@ public class TowanController {
 		return "index";
 	}
 
-	@RequestMapping(value = {"/","/home"})
+	@RequestMapping(value = {"/home"})
 	public String showHome(Model model) {
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
